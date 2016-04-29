@@ -1,0 +1,15 @@
+{
+  "name": "y",
+  "version": "y",
+  "authors": [
+    "Daniel Kats <dbkats@cs.toronto.edu>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.2",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "seedrandom": "~2.4.2"
+  }
+}
