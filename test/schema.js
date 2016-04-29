@@ -29,6 +29,22 @@ module.exports = function (knex) {
                 }
             });
         },
+        /**
+        * Create a table for recording player information
+        */
+        createPlayerTable: function () {
+            return knex.schema.hasTable("players")
+            .then(function(exists){
+                if (!exists){
+                    return knex.schema.createTable("players", function (table){
+                        table.increments("id");
+                        table.string("name");
+                        table.string("email").unique();
+                        table.integer("gold");
+                    });
+                }
+            });
+        }, 
 
     };
 };

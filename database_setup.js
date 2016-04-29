@@ -16,6 +16,7 @@ module.exports = {
             // static tables (those which house data not modified by player) first
         return schema.createGameStateTable()
             .then(schema.createGameState)
+            .then(schema.createPlayerTable)
         .error(function (e) {
             console.error("There was an error creating some tables");
             console.error(e);

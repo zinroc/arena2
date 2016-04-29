@@ -1,7 +1,10 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
     database_setup = require("./database_setup.js"),
-    timer = require("./timer.js");
+    timer = require("./timer.js"),
+    player = require("./player.js"),
+    gameState = require("./gameState.js");
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -25,6 +28,28 @@ app.get("/game", function (req, res) {
     res.sendFile(__dirname + "/views/arena.html");
 });
 /********************** Views *************************************/
+
+/********************** Players *************************************/
+app.post("/api/players/get", function (req, res) {
+    if (req.body.email && req.body.name) {
+        player.get(req.body.email, req.body.name, res);
+    } else {
+        res.status(400).send("Email and name are required");
+    }
+});
+
+/********************** Players *************************************/
+/********************** Game State *************************************/
+
+app.get("/api/gameState/get", function (req, res) {
+    if (req.query.email) {
+        gameState.get(req.query.email, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
+/********************** Game State *************************************/
 
 /********************* API v2 *************************/
 
