@@ -53,13 +53,6 @@ app.get("/api/gameState/get", function (req, res) {
 /********************** Game State *************************************/
 /********************** Characters *************************************/
 
-app.post("/api/characters/create", function (req, res) {
-    if(req.body.email){
-        characters.create(req.body.email, res);
-    } else {
-        res.status(400).send("Email is required");  
-    }
-});
 
 app.get("/api/characters/get", function (req, res) {
     if(req.query.email){

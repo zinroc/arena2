@@ -18,6 +18,8 @@ var characterStore = require("./my_node_modules/characterStore.js")(knex),
 
 var utils = require("./utils.js");
 
+var popCap = 1000;
+
 module.exports = characters = {
 
     get: function (email, response) {
@@ -26,13 +28,5 @@ module.exports = characters = {
             response.json(rows).end();
         });
     },
-    create: function (email, response){
-
-        var name = utils.newName();
-        characterStore.create(name)
-        .then(function (rows){
-            response.json(rows).end();
-        });
-    }
 
 };

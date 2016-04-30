@@ -23,9 +23,6 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/get", {email, email});
     };
 
-    this.createCharacters = function (email){
-        return this.postJSON("/api/characters/create", {email, email});
-    };
 
     return this;
 });
