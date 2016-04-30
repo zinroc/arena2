@@ -13,25 +13,42 @@
         <link rel="stylesheet" href="/css/fighters.css" />
     </head>
     <body ng-controller="ArenaCtrl">
-        <div id="info-bar">
-            <div id="gold-container" class="stat-container">
-                <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
-                <span id="gold">{{ gold }}</span>
-            </div>
-            <div class="stat-container">
-                Day {{ timestep }}
-            </div>
-            <div class="icon-container">
+        <div ng-if="!checkLoad()">
+            <h1>Loading... </h1>
+        </div>
+        <div ng-if="checkLoad()">
+            <div id="info-bar">
+                <div id="gold-container" class="stat-container">
+                    <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
+                    <span id="gold">{{ gold }}</span>
+                </div>
+                <div class="stat-container">
+                    Day {{ timestep }}
+                </div>
+                <div class="icon-container">
 
                     <span data-placement="bottom" data-toggle="tooltip" data-title="Settings">
-                        <span class="glyphicon glyphicon-cog" role="button" data-toggle="modal" data-target="#settings-modal">
+                        <span class="glyphicon glyphicon-user" role="button" data-toggle="modal" data-target="#recruits-modal" >
                         </span>
                     </span>
                 </div>
             </div>
+            <p class="btn btn-primary" ng-click="testNewFeature()"> Test New Feature</p>
 
-        Hello World
-
+            <div id="recruits-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">Recruits</h3>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span bs-tooltip data-toggle="tooltip" data-original-title="Recruits" ></span>
+        </div>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="bower_components/angular/angular.js"></script>

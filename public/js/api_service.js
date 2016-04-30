@@ -1,6 +1,6 @@
 var app = angular.module("ArenaApp");
 
-app.factory("arenaService", function arenaService ($http) {
+app.factory("api_service", function api_service ($http) {
 
     this.getJSON = function (url, data) {
         data = data || {};
@@ -18,6 +18,7 @@ app.factory("arenaService", function arenaService ($http) {
     this.getGameState = function (email) {
     	return this.getJSON("/api/gameState/get", {email: email});
     };
+
 
     return this;
 });

@@ -41,10 +41,25 @@ module.exports = function (knex) {
                         table.string("name");
                         table.string("email").unique();
                         table.integer("gold");
+                        table.string("location");
                     });
                 }
             });
         }, 
+        /**
+        *   Create a characters table
+        */
+        createCharactersTable: function (){
+            return knex.schema.hasTable("characters")
+            .then(function(exists){
+                if (!exists){
+                    return knex.schema.createTable("characters", function (table){
+                        table.increments("id");
+                        table.string("name");
+                    });
+                }
+            });
+        },
 
     };
 };

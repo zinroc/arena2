@@ -3,7 +3,8 @@ var express = require("express"),
     database_setup = require("./database_setup.js"),
     timer = require("./timer.js"),
     player = require("./player.js"),
-    gameState = require("./gameState.js");
+    gameState = require("./gameState.js"),
+    characters = require("./characters.js");
 
 
 var app = express();
@@ -50,7 +51,9 @@ app.get("/api/gameState/get", function (req, res) {
 });
 
 /********************** Game State *************************************/
+/********************** Characters *************************************/
 
+/********************** Characters *************************************/
 /********************* API v2 *************************/
 
 
