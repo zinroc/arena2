@@ -86,9 +86,17 @@ app.directive('bsTooltip', function (){
         }
         return true;
     };
-    
+
     $scope.testNewFeature = function (){
-        console.log("hello world");
+        /*api_service.getCharacters($scope.email)
+        .then(function (response){
+            console.log(response.data);
+        });
+        */
+        api_service.createCharacters($scope.email)
+        .then(function (response){
+            console.log(response.data);
+        });
     };
 
     $scope.load();

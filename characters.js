@@ -16,8 +16,23 @@ var characterStore = require("./my_node_modules/characterStore.js")(knex),
     playerStore = require("./my_node_modules/playerStore.js")(knex);
 
 
-var names = 'Abenigebritta,Demanni,Karraisrend,Remmethergiulf';
+var utils = require("./utils.js");
 
 module.exports = characters = {
+
+    get: function (email, response) {
+        characterStore.get()
+        .then(function (rows) {
+            response.json(rows).end();
+        });
+    },
+    create: function (email, response){
+
+        var name = utils.newName();
+        characterStore.create(name)
+        .then(function (rows){
+            response.json(rows).end();
+        });
+    }
 
 };
