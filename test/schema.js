@@ -56,6 +56,7 @@ module.exports = function (knex) {
                     return knex.schema.createTable("characters", function (table){
                         table.increments("id");
                         table.string("name");
+                        table.string("location");
                     });
                 }
             });
