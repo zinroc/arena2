@@ -75,6 +75,7 @@ app.directive('bsTooltip', function (){
         $scope.loadPlayerInfo();
         $scope.loadGameState();
         $scope.loadVisitors();
+        $scope.monitorGameState();
     };
 
     $scope.checkLoad = function (){
@@ -85,6 +86,30 @@ app.directive('bsTooltip', function (){
             }
         }
         return true;
+    };
+
+
+    /**
+    *   Monitor the globalgamestate to know when it changes
+    */
+    $scope.monitorGameState = function (){
+
+        api_service.getGameState($scope.email)
+        .then(function (response){
+            console.log("Got game state:");
+            console.log(response.data);
+            if($scope.timestep === response.data.timestep){
+                //do nothing
+            } else {
+                $scope.timestep = response.data.timestep;
+                $scope.load();
+            }
+        });
+
+        $timeout(function(){
+            $scope.monitorGameState();
+        }, 2000);
+
     };
 
     $scope.testNewFeature = function (){
