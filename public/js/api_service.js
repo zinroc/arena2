@@ -23,6 +23,10 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/get", {email, email});
     };
 
+    this.getVisitors = function (email){
+        return this.getJSON("/api/characters/getVisitors", {email, email});
+    };
+
     this.advanceTimestep = function (email){
         return this.postJSON("/api/gameState/advanceTimestep", {email: email});
     };

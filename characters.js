@@ -21,10 +21,17 @@ var utils = require("./utils.js");
 var popCap = 1000;
 
 module.exports = characters = {
-
+    //not called atm
     get: function (email, response) {
         characterStore.get()
         .then(function (rows) {
+            response.json(rows).end();
+        });
+    },
+    //called from client
+    getVisitors: function (email, response) {
+        characterStore.getVisitors(email)
+        .then(function (rows){
             response.json(rows).end();
         });
     },

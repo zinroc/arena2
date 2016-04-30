@@ -27,10 +27,9 @@
                 </div>
                 <div class="icon-container">
 
-                    <span data-placement="bottom" data-toggle="tooltip" data-title="Settings">
-                        <span class="glyphicon glyphicon-user" role="button" data-toggle="modal" data-target="#recruits-modal" >
-                        </span>
+                    <span class="glyphicon glyphicon-user" role="button" data-toggle="modal" data-target="#recruits-modal" >
                     </span>
+                    <span class="badge badge-notify">{{visitors.length}}</span>
                 </div>
             </div>
             <p class="btn btn-primary" ng-click="testNewFeature()"> Test New Feature</p>
@@ -44,6 +43,7 @@
                             <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">Visitors</h3>
                         </div>
                         <div class="modal-body">
+                            <div ng-repeat="visitor in visitors"> {{visitor.name.toTitleCase()}}</div>
                         </div>
                     </div>
                 </div>

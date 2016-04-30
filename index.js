@@ -5,7 +5,7 @@ var express = require("express"),
     player = require("./player.js"),
     gameState = require("./gameState.js"),
     characters = require("./characters.js");
-    
+
 
 
 var app = express();
@@ -62,6 +62,13 @@ app.get("/api/gameState/get", function (req, res) {
 /********************** Game State *************************************/
 /********************** Characters *************************************/
 
+app.get("/api/characters/getVisitors", function (req, res){
+    if (req.query.email){
+        characters.getVisitors(req.query.email, res);
+    } else {
+        res.status(400).send("Email is required");  
+    }
+});
 
 app.get("/api/characters/get", function (req, res) {
     if(req.query.email){

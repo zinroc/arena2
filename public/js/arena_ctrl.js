@@ -22,7 +22,7 @@ app.directive('bsTooltip', function (){
     $scope.name = utils.getCookie("name");
     console.log($scope.email, $scope.name);
 
-    $scope.loadedItemsArr = ['player', 'game'/*,'recruits'*/];
+    $scope.loadedItemsArr = ['player', 'game','visitors'];
     $scope.loadedItemsObj = {};
 
 
@@ -52,19 +52,19 @@ app.directive('bsTooltip', function (){
     };
 
     /**
-    *   Get recruit info
-    *   If recruits don't exist, create them
+    *   Get visitor info
+    *   If visitors don't exist, create them
     */
-    /*
-    $scope.loadRecruits = function (){
-        api_service.getRecruits($scope.email)
+    
+    $scope.loadVisitors = function (){
+        api_service.getVisitors($scope.email)
         .then(function (response) {
-            console.log("Got recruits:")
+            console.log("Got visitors:")
             console.log(response.data);
-            $scope.recruits = response.data;
-            $scope.loadedItemsObj['recruits'] = true;
+            $scope.visitors = response.data;
+            $scope.loadedItemsObj['visitors'] = true;
         });
-    };*/
+    };
 
     $scope.load = function (){
         for (var i=0; i<$scope.loadedItemsArr.length; i++){
@@ -74,7 +74,7 @@ app.directive('bsTooltip', function (){
         }
         $scope.loadPlayerInfo();
         $scope.loadGameState();
-        //$scope.loadRecruits();
+        $scope.loadVisitors();
     };
 
     $scope.checkLoad = function (){
