@@ -5,6 +5,7 @@ var express = require("express"),
     player = require("./player.js"),
     gameState = require("./gameState.js"),
     characters = require("./characters.js");
+    
 
 
 var app = express();
@@ -41,6 +42,14 @@ app.post("/api/players/get", function (req, res) {
 
 /********************** Players *************************************/
 /********************** Game State *************************************/
+
+app.post("/api/gameState/advanceTimestep", function (req, res) {
+    if (req.body.email) {
+        gameState.advanceTimestep(req.body.email, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
 
 app.get("/api/gameState/get", function (req, res) {
     if (req.query.email) {

@@ -91,5 +91,13 @@ app.directive('bsTooltip', function (){
         console.log('hello world');
     };
 
+    $scope.advanceTimestep = function (){
+        api_service.advanceTimestep($scope.email)
+        .then(function (response) {
+            console.log(response.data);
+            $scope.load();
+        });
+    };
+
     $scope.load();
 });

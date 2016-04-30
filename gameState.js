@@ -11,7 +11,8 @@ var knex = require("knex")({
     connection: credentials.PG_CON_STRING
 });
 
-var gameStateStore = require("./my_node_modules/gameStateStore.js")(knex);
+var gameStateStore = require("./my_node_modules/gameStateStore.js")(knex),
+    advance_timestep = require("./my_node_modules/advance_timestep")(knex);
 
 
 module.exports = gameState = {
@@ -21,6 +22,17 @@ module.exports = gameState = {
     get: function (email, response) {
         gameStateStore.get()
         .then (function (result){
+            response.json(result).end();
+        });
+    },
+    /**
+    * TODO - limit to admins
+    */
+    advanceTimestep: function (email, response){
+        gameStateStore.get()
+        .then (function (gs){
+            advance_timestep.internalAdvanceTimestep(gs)
+        }).then(function (result){
             response.json(result).end();
         });
     }
