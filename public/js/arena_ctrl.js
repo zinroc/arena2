@@ -66,16 +66,18 @@ app.directive('bsTooltip', function (){
         });
     };
 
-    $scope.load = function (){
+    $scope.loading = function (){
         for (var i=0; i<$scope.loadedItemsArr.length; i++){
             var index = $scope.loadedItemsArr[i];
             $scope.loadedItemsObj[index] = false;
-
         }
+    }
+
+    $scope.load = function (){
+
         $scope.loadPlayerInfo();
         $scope.loadGameState();
         $scope.loadVisitors();
-        $scope.monitorGameState();
     };
 
     $scope.checkLoad = function (){
@@ -89,6 +91,10 @@ app.directive('bsTooltip', function (){
     };
 
 
+    $scope.hideModals = function (){
+        $('#recruits-modal').modal('hide');
+    };
+
     /**
     *   Monitor the globalgamestate to know when it changes
     */
@@ -101,8 +107,10 @@ app.directive('bsTooltip', function (){
             if($scope.timestep === response.data.timestep){
                 //do nothing
             } else {
+                $scope.hideModals();
                 $scope.timestep = response.data.timestep;
                 $scope.load();
+
             }
         });
 
@@ -123,6 +131,9 @@ app.directive('bsTooltip', function (){
             $scope.load();
         });
     };
-
+    //loading must be seperate from load so modals can disapear on refresh
+    $scope.loading();
     $scope.load();
+    $scope.monitorGameState();
+
 });
