@@ -27,8 +27,16 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/getVisitors", {email, email});
     };
 
+    this.getScrollPacks = function (email){
+        return this.getJSON("/api/players/getScrollPacks", {email, email});
+    };
+
     this.advanceTimestep = function (email){
         return this.postJSON("/api/gameState/advanceTimestep", {email: email});
+    };
+
+    this.buyScrollPack = function (email){
+        return this.postJSON("/api/players/buyScrollPack", {email: email});
     };
 
     return this;

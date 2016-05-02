@@ -22,7 +22,7 @@ app.directive('bsTooltip', function (){
     $scope.name = utils.getCookie("name");
     console.log($scope.email, $scope.name);
 
-    $scope.loadedItemsArr = ['player', 'game','visitors'];
+    $scope.loadedItemsArr = ['player', 'game','visitors', 'scrollPacks'];
     $scope.loadedItemsObj = {};
 
 
@@ -59,10 +59,22 @@ app.directive('bsTooltip', function (){
     $scope.loadVisitors = function (){
         api_service.getVisitors($scope.email)
         .then(function (response) {
-            console.log("Got visitors:")
+            console.log("Got visitors:");
             console.log(response.data);
             $scope.visitors = response.data;
             $scope.loadedItemsObj['visitors'] = true;
+        });
+    };
+    /**
+    *   Get scroll pack info
+    */
+    $scope.loadScrollPacks = function (){
+        api_service.getScrollPacks($scope.email)
+        .then(function (response){
+            console.log("Got scroll packs:");
+            console.log(response.data);
+            $scope.scrollPacks = response.data;
+            $scope.loadedItemsObj['scrollPacks'] = true;
         });
     };
 
@@ -78,6 +90,7 @@ app.directive('bsTooltip', function (){
         $scope.loadPlayerInfo();
         $scope.loadGameState();
         $scope.loadVisitors();
+        $scope.loadScrollPacks();
     };
 
     $scope.checkLoad = function (){
@@ -92,7 +105,7 @@ app.directive('bsTooltip', function (){
 
 
     $scope.hideModals = function (){
-        $('#recruits-modal').modal('hide');
+        $('#visitors-modal').modal('hide');
     };
 
     /**
@@ -120,6 +133,15 @@ app.directive('bsTooltip', function (){
 
     };
 
+    $scope.buyScrollPack = function (){
+        console.log("buy scroll pack");
+        api_service.buyScrollPack($scope.email)
+        .then(function (response){
+            console.log(response.data);
+            $scope.loadScrollPacks();
+        });
+    };
+
     $scope.testNewFeature = function (){
         console.log('hello world');
     };
@@ -130,6 +152,10 @@ app.directive('bsTooltip', function (){
             console.log(response.data);
             $scope.load();
         });
+    };
+
+    $scope.openPack = function (packID){
+        console.log(packID);
     };
     //loading must be seperate from load so modals can disapear on refresh
     $scope.loading();

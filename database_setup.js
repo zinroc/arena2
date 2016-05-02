@@ -18,6 +18,7 @@ module.exports = {
             .then(schema.createGameState)
             .then(schema.createPlayerTable)
             .then(schema.createCharactersTable)
+            .then(schema.createScrollPackTable)
         .error(function (e) {
             console.error("There was an error creating some tables");
             console.error(e);

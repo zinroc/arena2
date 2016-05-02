@@ -2,7 +2,7 @@
 
 var utils = {};
 
-var nameList = require("./nameList.js");
+var nameList = require("./staticTables/nameList.js");
 
 module.exports = utils = {
 

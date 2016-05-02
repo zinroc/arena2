@@ -40,6 +40,22 @@ app.post("/api/players/get", function (req, res) {
     }
 });
 
+app.post("/api/players/buyScrollPack", function (req, res){
+    if (req.body.email){
+        player.buyScrollPack(req.body.email, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
+app.get("/api/players/getScrollPacks", function (req, res) {
+    if (req.query.email){
+        player.getScrollPacks(req.query.email, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
 /********************** Players *************************************/
 /********************** Game State *************************************/
 
