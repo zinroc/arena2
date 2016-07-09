@@ -29,11 +29,10 @@ module.exports = characters = {
         });
     },
     //called from client
-    getVisitors: function (email, response) {
-        characterStore.getVisitors(email)
-        .then(function (rows){
+    getPlayerCharacters: function(email, response){
+        characterStore.getPlayerCharacters(email)
+        .then(function (rows) {
             response.json(rows).end();
         });
-    },
-
+    }
 };

@@ -40,21 +40,7 @@ app.post("/api/players/get", function (req, res) {
     }
 });
 
-app.post("/api/players/buyScrollPack", function (req, res){
-    if (req.body.email){
-        player.buyScrollPack(req.body.email, res);
-    } else {
-        res.status(400).send("Email is required");
-    }
-});
 
-app.get("/api/players/getScrollPacks", function (req, res) {
-    if (req.query.email){
-        player.getScrollPacks(req.query.email, res);
-    } else {
-        res.status(400).send("Email is required");
-    }
-});
 
 /********************** Players *************************************/
 /********************** Game State *************************************/
@@ -78,14 +64,6 @@ app.get("/api/gameState/get", function (req, res) {
 /********************** Game State *************************************/
 /********************** Characters *************************************/
 
-app.get("/api/characters/getVisitors", function (req, res){
-    if (req.query.email){
-        characters.getVisitors(req.query.email, res);
-    } else {
-        res.status(400).send("Email is required");  
-    }
-});
-
 app.get("/api/characters/get", function (req, res) {
     if(req.query.email){
         characters.get(req.query.email, res);
@@ -93,6 +71,16 @@ app.get("/api/characters/get", function (req, res) {
         res.status(400).send("Email is required");  
     }
 });
+
+app.get("/api/characters/getPlayerCharacters", function (req, res) {
+    console.log(req.query.email);
+    if(req.query.email){
+        characters.getPlayerCharacters(req.query.email, res);
+    } else {
+        res.status(400).send("Email is required");  
+    }
+});
+
 
 /********************** Characters *************************************/
 /********************* API v2 *************************/

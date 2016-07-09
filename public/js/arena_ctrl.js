@@ -22,7 +22,7 @@ app.directive('bsTooltip', function (){
     $scope.name = utils.getCookie("name");
     console.log($scope.email, $scope.name);
 
-    $scope.loadedItemsArr = ['player', 'game'];
+    $scope.loadedItemsArr = ['player', 'game', 'chars'];
     $scope.loadedItemsObj = {};
 
 
@@ -52,6 +52,16 @@ app.directive('bsTooltip', function (){
     };
 
 
+    $scope.loadCharacterInfo = function (){
+        api_service.getPlayerCharacters($scope.email)
+        .then(function (response){
+            console.log("Got Characters");
+            console.log(response.data);
+            $scope.characters = response.data.characters;
+            $scope.loadedItemsObj['chars'] = true;
+        });
+    }
+
     $scope.loading = function (){
         for (var i=0; i<$scope.loadedItemsArr.length; i++){
             var index = $scope.loadedItemsArr[i];
@@ -63,6 +73,7 @@ app.directive('bsTooltip', function (){
 
         $scope.loadPlayerInfo();
         $scope.loadGameState();
+        $scope.loadCharacterInfo();
     };
 
     $scope.checkLoad = function (){
