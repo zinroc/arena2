@@ -20,63 +20,37 @@
             <h1>Loading... </h1>
         </div>
         <div ng-if="checkLoad()">
+
             <div id="info-bar">
                 <div id="gold-container" class="stat-container">
                     <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
                     <span id="gold">{{ gold }}</span>
                 </div>
+
                 <div class="stat-container">
                     Day {{ timestep }}
                 </div>
+
                 <div class="icon-container">
-                    <span class="glyphicon glyphicon-user" role="button" data-toggle="modal" data-target="#visitors-modal" >
-                    </span>
-                    <span class="badge badge-notify">{{visitors.length}}</span>
-                    <span class="glyphicon glyphicon-gift" role="button" data-toggle="modal" data-target="#gift-modal" >
-                    </span>
-                    <span class="badge badge-notify">{{scrollPacks.length}}</span>
+                    <span ng-if="admin" class="glyphicon glyphicon-cog" role="button" data-toggle="modal" data-target="#settings-modal">
                 </div>
 
             </div>
-            <p class="btn btn-primary" ng-click="testNewFeature()"> Test New Feature</p>
-            <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
+        
 
-            <div id="visitors-modal" class="modal fade">
+
+            <div id="settings-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">Visitors</h3>
+                            <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">Settings</h3>
                         </div>
-                        <div class="modal-body">
-                            <div ng-repeat="visitor in visitors" role="button"> {{visitor.name.toTitleCase()}}</div>
-                        </div>
+                        <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
                     </div>
                 </div>
             </div>
-            <div id="gift-modal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">New Items</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div ng-repeat="pack in scrollPacks"><p class="btn btn-primary">{{pack.type.toTitleCase()}} Scroll Pack Level {{pack.level}} </p><p class="btn btn-success" ng-click="openPack(pack.id)"> Open </p></div>
-                        </div>
-                        <div class="modal-header">
-                            <h3>Buy Item</h3>
-                        </div>
-                        <div class="modal-body">
-
-                            <p class="btn btn-primary" ng-click="buyScrollPack()"> Scroll Pack <br> 50
-                                <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money" style="height: 15px;"/>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span bs-tooltip data-toggle="tooltip" data-original-title="Recruits" ></span>
+            
         </div>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
