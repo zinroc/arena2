@@ -40,7 +40,6 @@ module.exports = function (knex) {
                         table.increments("id");
                         table.string("name");
                         table.string("email").unique();
-                        table.integer("gold");
                         table.string("location");
                     });
                 }
@@ -60,24 +59,6 @@ module.exports = function (knex) {
                     });
                 }
             });
-        },
-        /*
-        *   Scroll packs table
-        */
-        createScrollPackTable: function (){
-            return knex.schema.hasTable("scroll_packs")
-            .then(function (exists){
-                if (!exists){
-                    return knex.schema.createTable("scroll_packs", function (table){
-                        table.increments("id");
-                        table.string("type");
-                        table.integer("level");
-                        table.string("owner");
-                        table.boolean("opened");
-                    });
-                };
-            });
-        },
-
+        }
     };
 };

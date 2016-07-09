@@ -36,7 +36,6 @@ app.directive('bsTooltip', function (){
             console.log("Got player state:");
             console.log(response.data);
             $scope.admin = response.data.admin;
-            $scope.gold = response.data.gold;
             $scope.loadedItemsObj['player'] = true;
         });
     };
@@ -78,7 +77,7 @@ app.directive('bsTooltip', function (){
 
 
     $scope.hideModals = function (){
-        $('#visitors-modal').modal('hide');
+        $('#settings-modal').modal('hide');
     };
 
     /**
