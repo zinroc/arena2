@@ -1,6 +1,7 @@
 var app = angular.module("ArenaApp");
 
 
+
 app.directive('bsTooltip', function (){
     return {
         restrict: 'A',
@@ -20,12 +21,20 @@ app.directive('bsTooltip', function (){
     "use strict";
     $scope.email = utils.getCookie("email");
     $scope.name = utils.getCookie("name");
+
     console.log($scope.email, $scope.name);
 
+    /** Loading Screen Parameters **/ 
     $scope.loadedItemsArr = ['player', 'game', 'chars'];
     $scope.loadedItemsObj = {};
+    
+    /** Character Creation Parameters **/ 
+    $scope.newCharName = "";
 
+    /** Character Manipulation **/
+    $scope.selectedCharacter = null;
 
+    /** ------------- Loading START ------------- **/
     /**
      * Load player Info
      * If player does not yet exist, write into db
@@ -57,8 +66,11 @@ app.directive('bsTooltip', function (){
         .then(function (response){
             console.log("Got Characters");
             console.log(response.data);
-            $scope.characters = response.data.characters;
+            $scope.characters = response.data;
             $scope.loadedItemsObj['chars'] = true;
+            if ($scope.characters.length && !$scope.selectedCharacter){
+                $scope.selectedCharacter = $scope.characters[0];
+            }
         });
     }
 
@@ -86,9 +98,14 @@ app.directive('bsTooltip', function (){
         return true;
     };
 
+    /*** ---------- Loading END ------------ ***/
+
+    /*** ----------- Game State ------------ ***/
 
     $scope.hideModals = function (){
         $('#settings-modal').modal('hide');
+        $('#createCharacter-modal').modal('hide');
+
     };
 
     /**
@@ -115,9 +132,8 @@ app.directive('bsTooltip', function (){
         }, 2000);
 
     };
-
-
-
+    /*** ------------ Game State END ---------------- ***/
+    /*** ------------ Dev Environment START--------------- ***/
 
     $scope.advanceTimestep = function (){
         api_service.advanceTimestep($scope.email)
@@ -126,10 +142,49 @@ app.directive('bsTooltip', function (){
             $scope.load();
         });
     };
+    /*** ------------- Dev Environemnt END------------ ***/ 
+    /**** ------------ Char Creation START-------------- ***/
 
+    $scope.setCharName = function () {
+        $scope.newCharName = utils.newName();
+        for (var i=0; i<$scope.characters.length; i++){
+            if($scope.newCharName === $scope.characters[i].name){
+                $scope.setCharName();
+                break;
+            }
+        }
+    }; 
+
+    $scope.createCharacter = function (){
+
+        console.log($scope.newCharName, $scope.email);
+        api_service.createCharacter($scope.email, $scope.newCharName)
+        .then(function (response){
+            console.log("character created");
+            console.log(response.data);
+            $scope.loadCharacterInfo();
+            $scope.hideModals();
+            $scope.setCharName();
+        });
+    };
+
+    /**** ------------ Char Creation END-------------- ***/
+    /**** ------------ Char Manipulation START ------- ***/
+
+    /**
+    *   INPUT character OBJECT row from characters table
+    */
+    $scope.selectCharacter = function (character){
+        $scope.selectedCharacter = character;
+    };
+
+    /**** ------------ Char Manipulation END   ------- ***/
+    /*** -------------- Run START ------------- ***/
     //loading must be seperate from load so modals can disapear on refresh
     $scope.loading();
     $scope.load();
     $scope.monitorGameState();
+
+    /*** -------------- Run END ------------- ***/
 
 });

@@ -34,5 +34,12 @@ module.exports = characters = {
         .then(function (rows) {
             response.json(rows).end();
         });
+    },
+    //called from client
+    createPlayerCharacter: function(email, name, response){
+        characterStore.createPlayerCharacter(email, name)
+        .then(function (rows){
+            response.json(rows).end();
+        });
     }
 };

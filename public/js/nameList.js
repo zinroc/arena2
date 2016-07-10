@@ -633,6 +633,21 @@ Col1[124] = "Kalaincena";
 Col2[124] = "Reindane";
 Col3[124] = "Zannah";
 
+var nameList = {
+
+    getName: function (index_1, index_2){
+        if (index_1 === 0){
+            return Col0[index_2];
+        } else if (index_1 === 1){
+            return Col1[index_2];
+        } else if (index_1 === 2){
+            return Col2[index_2];
+        } else if (index_1 === 3){
+            return Col3[index_2];
+        }
+    },
+}
+
 module.exports = nameList = {
 	getName: function (index_1, index_2){
         if (index_1 === 0){

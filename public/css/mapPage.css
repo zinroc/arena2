@@ -5,7 +5,12 @@
 }
 
 
+.inline {
+	display: inline-block;
+}
+
 .characterPortrait {
+	position: relative;
 	height:70px;
 	border-radius: 50%;
 	width: 70px;
@@ -14,9 +19,74 @@
 	background: grey;
 	cursor: pointer;
 	text-align: center;
+	border: thick black solid;
+	overflow: hidden;
+}
+
+.selectedCharacterPortrait {
+	position: relative;
+	height:70px;
+	border-radius: 50%;
+	width: 70px;
+	display: inline-block;
+	margin: 0 auto; 
+	background: gold;
+	cursor: pointer;
+	text-align: center;
+	border: thick orange solid;
+	overflow: hidden;
 }
 
 .characterPortrait-active {
 	background: green;
-	font-size: 50px;
+}
+
+.flicker {
+    animation: flicker 2s 0s linear alternate infinite;
+}
+
+
+.selectedCharacterPortrait .glyphicon-user {
+	font-size: 55px;
+	margin-top: 5px;
+	margin-left: 2px;
+}
+
+.characterPortrait .glyphicon-user {
+	font-size: 55px;
+	margin-top: 5px;
+	margin-left: 2px;
+}
+
+.characterPortrait .glyphicon-plus {
+	font-size: 55px;
+	margin-top: 0px;
+	margin-left: 5px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.center {
+	text-align: center;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        border: 4px darkgreen solid;
+    }
+    25%{
+        border: 6px yellow solid;
+    }
+    50%{
+        border: 4px gold solid;
+    }
+    75% {
+        border: 6px orange solid;
+    }
+    100%{
+        border: 4px lime solid;
+    }
 }

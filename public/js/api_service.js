@@ -20,16 +20,20 @@ app.factory("api_service", function api_service ($http) {
     };
 
     this.getCharacters = function (email){
-        return this.getJSON("/api/characters/get", {email, email});
+        return this.getJSON("/api/characters/get", {email: email});
     };
 
 
     this.getPlayerCharacters = function(email){
-        return this.getJSON("/api/characters/getPlayerCharacters", {email, email});
+        return this.getJSON("/api/characters/getPlayerCharacters", {email: email});
     };
 
     this.advanceTimestep = function (email){
         return this.postJSON("/api/gameState/advanceTimestep", {email: email});
+    };
+
+    this.createCharacter = function (email, name){
+        return this.postJSON("/api/characters/createPlayerCharacter", {email: email, name: name});
     };
 
   

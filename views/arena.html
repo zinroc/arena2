@@ -39,13 +39,40 @@
             </div>
             <!-- Under top bar, used to select / cycle through characters controlled by the player-->
             <div id="characterSelector-container">
-                <div class="characterPortrait" ng-repeat="char in characters ">
+                <div class="inline" ng-repeat="char in characters">
+                    <!-- Show black border with grey background if character not selected -->
+                    <div ng-if="selectedCharacter.id !== char.id" class="characterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}}" ng-click="selectCharacter(char)">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
+                    <!-- Show orange border with gold background if character us selected -->
+                    <div ng-if="selectedCharacter.id === char.id" class="selectedCharacterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}}" ng-click="selectCharacter(char)">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
                 </div>
-                <div class="characterPortrait characterPortrait-active"  ng-if="!character.length" bs-tooltip data-toggle="tooltip" data-original-title="Create New Character">
-                    <span class="glyphicon glyphicon-plus" ></span>
+                <!-- show flickering button if player has no characters -->
+                <div class="characterPortrait characterPortrait-active flicker"  ng-if="!characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
+                </div>
+                <!-- show regular create button if player has characters -->
+                <div class="characterPortrait characterPortrait-active" ng-if="characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
                 </div>
             </div>
 
+
+            <div id="createCharacter-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center">{{newCharName}} <span class="pointer glyphicon glyphicon-refresh" ng-click="setCharName()"></span></h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="btn btn-primary" ng-click="createCharacter()"> Create Character </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div id="settings-modal" class="modal fade">
                 <div class="modal-dialog">
@@ -54,7 +81,9 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h3 class="modal-title">Settings</h3>
                         </div>
-                        <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
+                        <div class="modal-body">
+                            <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,5 +96,6 @@
         <script src="js/arena.js"></script>
         <script src="js/api_service.js"></script>
         <script src="js/arena_ctrl.js"></script>
+        <script src="js/nameList.js"></script>
     </body>
 </html>

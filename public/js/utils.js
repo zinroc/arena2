@@ -1,9 +1,15 @@
 "use strict";
-
 /**
  * Use these utilities throughout client-side code
  */
 var utils = {
+
+    newName: function () {
+        var index_1 = Math.floor(Math.random()*4);
+        var index_2 = Math.floor(Math.random()*125);
+        return nameList.getName(index_1, index_2);
+    },
+
     randomItem: function (collection) {
         var idx = Math.floor(collection.length * Math.random());
         return collection[idx];
