@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/topbar.css" />
+        <link rel="stylesheet" href="/css/mapPage.css" />
 
         <!--
         <link rel="stylesheet" href="css/style.css" > 
@@ -20,7 +21,7 @@
             <h1>Loading... </h1>
         </div>
         <div ng-if="checkLoad()">
-
+            <!-- Top bar used for main navigation common to all -->
             <div id="info-bar">
                 <div id="gold-container" class="stat-container">
                     <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
@@ -36,7 +37,13 @@
                 </div>
 
             </div>
-            <div>
+            <!-- Under top bar, used to select / cycle through characters controlled by the player-->
+            <div id="characterSelector-container">
+                <div class="characterPortrait" ng-repeat="char in characters ">
+                </div>
+                <div class="characterPortrait characterPortrait-active"  ng-if="!character.length" bs-tooltip data-toggle="tooltip" data-original-title="Create New Character">
+                    <span class="glyphicon glyphicon-plus" ></span>
+                </div>
             </div>
 
 
@@ -45,7 +52,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" bs-tooltip data-toggle="tooltip" data-original-title="test">Settings</h3>
+                            <h3 class="modal-title">Settings</h3>
                         </div>
                         <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
                     </div>
