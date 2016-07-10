@@ -105,6 +105,7 @@ app.directive('bsTooltip', function (){
     $scope.hideModals = function (){
         $('#settings-modal').modal('hide');
         $('#createCharacter-modal').modal('hide');
+        $('#deleteCharacter-modal').modal('hide');
 
     };
 
@@ -143,7 +144,7 @@ app.directive('bsTooltip', function (){
         });
     };
     /*** ------------- Dev Environemnt END------------ ***/ 
-    /**** ------------ Char Creation START-------------- ***/
+    /**** ------------ Char Creation/Destruction START-------------- ***/
 
     $scope.setCharName = function () {
         $scope.newCharName = utils.newName();
@@ -157,7 +158,6 @@ app.directive('bsTooltip', function (){
 
     $scope.createCharacter = function (){
 
-        console.log($scope.newCharName, $scope.email);
         api_service.createCharacter($scope.email, $scope.newCharName)
         .then(function (response){
             console.log("character created");
@@ -165,6 +165,17 @@ app.directive('bsTooltip', function (){
             $scope.loadCharacterInfo();
             $scope.hideModals();
             $scope.setCharName();
+        });
+    };
+
+    $scope.deleteCharacter = function (){
+        api_service.deleteCharacter($scope.email, $scope.selectedCharacter.id)
+        .then(function (response){
+            console.log("character deleted");
+            console.log(response.data);
+            $scope.selectedCharacter = null;
+            $scope.loadCharacterInfo();
+            $scope.hideModals();
         });
     };
 

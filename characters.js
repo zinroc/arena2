@@ -41,5 +41,12 @@ module.exports = characters = {
         .then(function (rows){
             response.json(rows).end();
         });
+    },
+    //called from client
+    deletePlayerCharacter: function(email, id, response){
+        characterStore.deletePlayerCharacter(email, id)
+        .then(function (result){
+            response.json(result).end();
+        });
     }
 };

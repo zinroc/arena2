@@ -36,6 +36,9 @@ app.factory("api_service", function api_service ($http) {
         return this.postJSON("/api/characters/createPlayerCharacter", {email: email, name: name});
     };
 
+    this.deleteCharacter = function (email, id){
+        return this.postJSON("/api/characters/deletePlayerCharacter", {email: email, id: id});
+    };
   
 
     return this;

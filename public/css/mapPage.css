@@ -5,10 +5,18 @@
 }
 
 
-.inline {
+
+
+.portraitList-container {
 	display: inline-block;
 }
 
+.portraitList-container .badge {
+	margin-left: -25px;
+	background: red;
+	z-index: 10;
+	cursor: pointer;	
+}
 .characterPortrait {
 	position: relative;
 	height:70px;
