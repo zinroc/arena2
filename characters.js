@@ -36,8 +36,8 @@ module.exports = characters = {
         });
     },
     //called from client
-    createPlayerCharacter: function(email, name, response){
-        characterStore.createPlayerCharacter(email, name)
+    createPlayerCharacter: function(email, name, family_name, response){
+        characterStore.createPlayerCharacter(email, name, family_name)
         .then(function (rows){
             response.json(rows).end();
         });

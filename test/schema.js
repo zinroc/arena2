@@ -58,6 +58,7 @@ module.exports = function (knex) {
                         table.string("name");
                         table.string("location");
                         table.string("owner");
+                        table.string("family_name");
                     });
                 }
             });

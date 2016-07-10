@@ -83,7 +83,7 @@ app.get("/api/characters/getPlayerCharacters", function (req, res) {
 
 app.post("/api/characters/createPlayerCharacter", function (req, res) {
     if (req.body.email) {
-        characters.createPlayerCharacter(req.body.email, req.body.name, res);
+        characters.createPlayerCharacter(req.body.email, req.body.name, req.body.family_name, res);
     } else {
         res.status(400).send("Email is required");
     }

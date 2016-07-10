@@ -30,6 +30,7 @@ app.directive('bsTooltip', function (){
     
     /** Character Creation Parameters **/ 
     $scope.newCharName = "";
+    $scope.newCharFamilyName = "";
     $scope.characterCap = 0; 
 
     /** Character Manipulation **/
@@ -72,6 +73,7 @@ app.directive('bsTooltip', function (){
             $scope.loadedItemsObj['chars'] = true;
             if ($scope.characters.length && !$scope.selectedCharacter){
                 $scope.selectedCharacter = $scope.characters[0];
+                $scope.newCharFamilyName = $scope.characters[0].family_name;
             }
         });
     }
@@ -158,9 +160,18 @@ app.directive('bsTooltip', function (){
         }
     }; 
 
+    $scope.setCharFamilyName = function () {
+        $scope.newCharFamilyName = utils.newName();
+    }; 
+
+    $scope.setCharNames = function (){
+        $scope.setCharName();
+        $scope.setCharFamilyName();
+    }
+
     $scope.createCharacter = function (){
 
-        api_service.createCharacter($scope.email, $scope.newCharName)
+        api_service.createCharacter($scope.email, $scope.newCharName, $scope.newCharFamilyName)
         .then(function (response){
             console.log("character created");
             console.log(response.data);
@@ -189,6 +200,7 @@ app.directive('bsTooltip', function (){
     */
     $scope.selectCharacter = function (character){
         $scope.selectedCharacter = character;
+        $scope.newCharFamilyName = character.family_name;
     };
 
     /**** ------------ Char Manipulation END   ------- ***/

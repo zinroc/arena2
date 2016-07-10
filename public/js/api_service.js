@@ -32,8 +32,8 @@ app.factory("api_service", function api_service ($http) {
         return this.postJSON("/api/gameState/advanceTimestep", {email: email});
     };
 
-    this.createCharacter = function (email, name){
-        return this.postJSON("/api/characters/createPlayerCharacter", {email: email, name: name});
+    this.createCharacter = function (email, name, family_name){
+        return this.postJSON("/api/characters/createPlayerCharacter", {email: email, name: name, family_name: family_name});
     };
 
     this.deleteCharacter = function (email, id){

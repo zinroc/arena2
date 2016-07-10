@@ -41,18 +41,18 @@
             <div id="characterSelector-container">
                 <div class="portraitList-container" ng-repeat="char in characters">
                     <!-- Show black border with grey background if character not selected -->
-                    <div ng-if="selectedCharacter.id !== char.id" class="characterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}}" ng-click="selectCharacter(char)">
+                    <div ng-if="selectedCharacter.id !== char.id" class="characterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}} {{char.family_name}}" ng-click="selectCharacter(char)">
                         <span class="glyphicon glyphicon-user"></span>
                     </div>
                     <!-- Show orange border with gold background if character us selected -->
-                    <div ng-if="selectedCharacter.id === char.id" class="selectedCharacterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}}" ng-click="selectCharacter(char)">
+                    <div ng-if="selectedCharacter.id === char.id" class="selectedCharacterPortrait" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}} {{char.family_name}}" ng-click="selectCharacter(char)">
                         <span class="glyphicon glyphicon-user"></span>
 
                     </div>
                     <span ng-if="selectedCharacter.id === char.id" class="badge" data-toggle="modal" data-target="#deleteCharacter-modal">DEL</span>
                 </div>
                 <!-- show flickering button if player has no characters -->
-                <div class="characterPortrait characterPortrait-active flicker"  ng-if="!characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                <div class="characterPortrait characterPortrait-active flicker"  ng-if="!characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharNames()">
                     <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
                 </div>
                 <!-- show regular create button if player has characters -->
@@ -71,7 +71,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title center">Delete {{selectedCharacter.name}}? </h3>
+                            <h3 class="modal-title center">Delete {{selectedCharacter.name}} {{selectedCharacter.family_name}}? </h3>
                         </div>
                         <div class="modal-body">
                             <p class="btn btn-danger" ng-click="deleteCharacter()"> Yes </p>
@@ -86,7 +86,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title center">{{newCharName}} <span class="pointer glyphicon glyphicon-refresh" ng-click="setCharName()"></span></h3>
+                            <h3 class="modal-title center">{{newCharName}} <span class="pointer glyphicon glyphicon-refresh" ng-click="setCharName()"></span>
+
+                            {{newCharFamilyName}}
+                            <span ng-if="!characters.length" class="pointer glyphicon glyphicon-refresh" ng-click="setCharFamilyName()"></span>
+                            </h3>
                         </div>
                         <div class="modal-body">
                             <p class="btn btn-primary" ng-click="createCharacter()"> Create Character </p>
