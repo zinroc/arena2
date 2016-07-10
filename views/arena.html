@@ -56,7 +56,11 @@
                     <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
                 </div>
                 <!-- show regular create button if player has characters -->
-                <div class="characterPortrait characterPortrait-active" ng-if="characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                <div class="characterPortrait characterPortrait-active" ng-if="characters.length && characters.length < (characterCap)"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
+                </div>
+                <!-- show greyed out create button if player has reached character cap -->
+                <div class="characterPortrait characterPortrait-disable" ng-if="characters.length > (characterCap-1)">
                     <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
                 </div>
             </div>

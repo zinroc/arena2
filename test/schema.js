@@ -40,7 +40,8 @@ module.exports = function (knex) {
                         table.increments("id");
                         table.string("name");
                         table.string("email").unique();
-                        table.string("location");
+                        table.boolean("admin");
+                        table.integer("character_cap");
                     });
                 }
             });

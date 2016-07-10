@@ -30,6 +30,7 @@ app.directive('bsTooltip', function (){
     
     /** Character Creation Parameters **/ 
     $scope.newCharName = "";
+    $scope.characterCap = 0; 
 
     /** Character Manipulation **/
     $scope.selectedCharacter = null;
@@ -42,9 +43,10 @@ app.directive('bsTooltip', function (){
     $scope.loadPlayerInfo = function () {
         api_service.getPlayer($scope.email, $scope.name)
         .then(function (response) {
-            console.log("Got player state:");
+            console.log("Got player state:", response.data.character_cap);
             console.log(response.data);
             $scope.admin = response.data.admin;
+            $scope.characterCap = response.data.character_cap;
             $scope.loadedItemsObj['player'] = true;
         });
     };
