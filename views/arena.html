@@ -62,17 +62,17 @@
 
             <div id="worldMap-container">
 
-                <div class="provinceArrows" ng-click="cycleProvinceLeft()">
+                <div class="provinceArrows" ng-click="cycleProvinceLeft()" ng-if="viewRegionSlideStatus==='off'">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </div>
                 <div id="provinceTitle">
                     <h1>{{selectedProvince.name.toTitleCase()}}</h1>
                 </div>
-                <div class="provinceArrows" ng-click="cycleProvinceRight()">
+                <div class="provinceArrows" ng-click="cycleProvinceRight()" ng-if="viewRegionSlideStatus==='off'">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </div>
                 <div id="mapChart" class="container-fluid">
-                    <div class="row">
+                    <div class="row {{viewRegionSlide()}}">
                         <!-- If character has a location or have no characters, don't need to spawn in -->
                         <div class="col-md-3">
                             <div id="capital" class="{{viewRegionFlicker()}}">

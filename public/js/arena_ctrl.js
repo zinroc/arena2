@@ -39,6 +39,7 @@ app.directive('bsTooltip', function (){
     /** Map Manipulation **/ 
     $scope.selectedProvince = null;
     $scope.selectedRegion = null; 
+    $scope.viewRegionSlideStatus = "off";
 
     /** ------------- Loading START ------------- **/
     /**
@@ -266,12 +267,27 @@ app.directive('bsTooltip', function (){
         //console.log($scope.selectedProvince.index);
         $scope.selectedRegion = null; 
         $scope.selectedProvince = provinceList.cycleLeft($scope.selectedProvince.index);
+        /** Sliding animations **/ 
+        $scope.viewRegionSlideStatus = 'left';
+        setTimeout(function (){
+                if ($scope.viewRegionSlideStatus === 'left'){
+                    $scope.viewRegionSlideStatus = 'off'; 
 
+                }
+            }, 400);
     };
 
     $scope.cycleProvinceRight = function (){
         $scope.selectedRegion = null; 
         $scope.selectedProvince = provinceList.cycleRight($scope.selectedProvince.index);
+        /** Sliding animations **/ 
+        $scope.viewRegionSlideStatus = 'right';
+        setTimeout(function (){
+                if ($scope.viewRegionSlideStatus === 'right'){
+                    $scope.viewRegionSlideStatus = 'off'; 
+
+                }
+            }, 400);
     };
 
     /**
@@ -289,6 +305,18 @@ app.directive('bsTooltip', function (){
         }
     };
 
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewRegionSlide = function (){
+        if ($scope.viewRegionSlideStatus === 'off'){
+            return "";
+        } else if ($scope.viewRegionSlideStatus === 'right'){
+            return "fadeRight";
+        } else if ($scope.viewRegionSlideStatus === 'left') {
+            return "fadeLeft";
+        }
+    };
 
     /**** ------------ Map Manipulation END ---------***/
     /*** -------------- Run START ------------- ***/
