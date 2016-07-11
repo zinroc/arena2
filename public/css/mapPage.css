@@ -35,6 +35,33 @@
 	overflow: hidden;
 }
 
+.characterPortrait-active {
+	background: green;
+}
+
+.createCharButton {
+	position: relative;
+	height:70px;
+	border-radius: 50%;
+	width: 70px;
+	display: inline-block;
+	margin: 0 auto; 
+	background: grey;
+	cursor: pointer;
+	text-align: center;
+	border: thick black solid;
+	top: -10px;
+	left: 10px;
+}
+
+.createCharButton-active {
+	background: green;
+}
+
+.disabled {
+	cursor: not-allowed;
+}
+
 .selectedCharacterPortrait {
 	position: relative;
 	height:70px;
@@ -49,9 +76,7 @@
 	overflow: hidden;
 }
 
-.characterPortrait-active {
-	background: green;
-}
+
 
 .flicker {
     animation: flicker 2s 0s linear alternate infinite;
@@ -70,7 +95,7 @@
 	margin-left: 2px;
 }
 
-.characterPortrait .glyphicon-plus {
+.createCharButton .glyphicon-plus {
 	font-size: 55px;
 	margin-top: 0px;
 	margin-left: 5px;
@@ -119,7 +144,40 @@
 }
 
 #mapChart {
+	position: relative;
+	text-align: center;
+}
 
+#capital {
+	position: relative;
+	border: black thick solid;
+	width: 90px;
+	height: 90px;
+    margin: 0 auto; 
+    cursor: pointer;
+    background: grey;
+}
+
+#capital .glyphicon-home {
+	font-size: 70px;
+	margin-top: 5px;
+	margin-left: -4px;
+}
+
+#region {
+	position: relative;
+	border: black thick solid;
+	width: 70px;
+	height: 70px;
+    margin: 0 auto; 
+    cursor: pointer;
+    background: grey;
+    top: 20px;
+}
+
+#region .glyphicon-tent {
+	font-size: 50px;
+	margin-top: 5px;
 }
 
 /* Main Map Page END */

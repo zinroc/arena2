@@ -52,16 +52,18 @@
                     <span ng-if="selectedCharacter.id === char.id" class="badge" data-toggle="modal" data-target="#deleteCharacter-modal">DEL</span>
                 </div>
                 <!-- show flickering button if player has no characters -->
-                <div class="characterPortrait characterPortrait-active flicker"  ng-if="!characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharNames()">
-                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
+                <div class="createCharButton createCharButton-active flicker"  ng-if="!characters.length"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharNames()">
+                    <div bs-tooltip data-toggle="tooltip" data-placement="right" data-original-title="Create New Character">
+                        <span class="glyphicon glyphicon-plus" ></span>
+                    </div>
                 </div>
                 <!-- show regular create button if player has characters -->
-                <div class="characterPortrait characterPortrait-active" ng-if="characters.length && characters.length < (characterCap)"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
-                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
+                <div class="createCharButton createCharButton-active" ng-if="characters.length && characters.length < (characterCap)"  data-toggle="modal" data-target="#createCharacter-modal" ng-click="setCharName()">
+                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="right" data-original-title="Create New Character"></span>
                 </div>
                 <!-- show greyed out create button if player has reached character cap -->
-                <div class="characterPortrait characterPortrait-disable" ng-if="characters.length > (characterCap-1)">
-                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Create New Character"></span>
+                <div class="createCharButton disabled" ng-if="characters.length > (characterCap-1)" >
+                    <span class="glyphicon glyphicon-plus" bs-tooltip data-toggle="tooltip" data-placement="right" data-original-title="Character Limit Reached"></span>
                 </div>
             </div>
 
@@ -78,7 +80,51 @@
                 <div class="provinceArrows" ng-click="cycleProvinceRight()">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </div>
-                <div id="mapChart">
+                <div id="mapChart" class="container-fluid">
+                    <div class="row">
+                        <!-- If character has a location or have no characters, don't need to spawn in -->
+                        <div class="col-md-3">
+                            <div id="capital" ng-if="selectedCharacter.location || characters.length === 0" >
+                                <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="region" ng-if="selectedCharacter.location || characters.length === 0" >
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[0].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3"  >
+                            <div id="region" ng-if="selectedCharacter.location || characters.length === 0" >
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[1].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="region" ng-if="selectedCharacter.location || characters.length === 0" >
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[2].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <!-- If character doesn't have a location, flicker to show options for spawning-->
+                        <div class="col-md-3">
+                            <div id="capital" class="flicker" ng-if="!selectedCharacter.location && selectedCharacter" >
+                                <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="region" class="flicker" ng-if="!selectedCharacter.location && selectedCharacter">
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[0].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="region" class="flicker" ng-if="!selectedCharacter.location && selectedCharacter">
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[1].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="region" class="flicker" ng-if="!selectedCharacter.location && selectedCharacter">
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[2].toTitleCase()}}"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
