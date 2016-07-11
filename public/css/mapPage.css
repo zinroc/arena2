@@ -194,6 +194,7 @@
 }
 
 .twinkle {
+    animation: twinkle 2s 0s linear alternate infinite;
 }
 
 @keyframes fadeLeft {
