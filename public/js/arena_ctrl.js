@@ -212,6 +212,45 @@ app.directive('bsTooltip', function (){
         $scope.newCharFamilyName = character.family_name;
     };
 
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewCharActive = function (char_id){
+        if (!char_id){
+            return "";
+        } else if (!$scope.selectedCharacter){
+            return "";
+        }else if (char_id === $scope.selectedCharacter.id){
+            return 'selectedCharacterPortrait';
+        } else {
+            return 'characterPortrait';
+        }
+    };
+
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewCharButtonActive = function (){
+        if (!$scope.characters.length){
+            return "createCharButton-active";
+        } else if ($scope.characters.length && $scope.characters.length < $scope.characterCap){
+            return "createCharButton-active";
+        } else {
+            return "";
+        }
+    };
+
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewCharButtonFlicker = function (){
+        if (!$scope.characters.length){
+            return "flicker";
+        } else {
+            return "";
+        }
+    };
+
     /**** ------------ Char Manipulation END   ------- ***/
     /**** ------------ Map Manipulation START ---------***/
     $scope.selectProvince = function(location){
@@ -234,6 +273,22 @@ app.directive('bsTooltip', function (){
         $scope.selectedRegion = null; 
         $scope.selectedProvince = provinceList.cycleRight($scope.selectedProvince.index);
     };
+
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewRegionFlicker = function () {
+        if($scope.characters.length ===0){
+            return "";
+        } else if (!$scope.selectedCharacter) {
+            return "";
+        }else if($scope.selectedCharacter.location){
+            return "";
+        } else if (!$scope.selectedCharacter.location){
+            return "flicker";
+        }
+    };
+
 
     /**** ------------ Map Manipulation END ---------***/
     /*** -------------- Run START ------------- ***/
