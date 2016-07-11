@@ -9,7 +9,9 @@ var utils = {
         var index_2 = Math.floor(Math.random()*125);
         return nameList.getName(index_1, index_2);
     },
-
+    provinceGivenLocation: function (location){
+        return provinceList.provinceGivenLocation(location);
+    },
     randomItem: function (collection) {
         var idx = Math.floor(collection.length * Math.random());
         return collection[idx];

@@ -36,6 +36,10 @@ app.directive('bsTooltip', function (){
     /** Character Manipulation **/
     $scope.selectedCharacter = null;
 
+    /** Map Manipulation **/ 
+    $scope.selectedProvince = null;
+    $scope.selectedRegion = null; 
+
     /** ------------- Loading START ------------- **/
     /**
      * Load player Info
@@ -74,16 +78,21 @@ app.directive('bsTooltip', function (){
             if ($scope.characters.length && !$scope.selectedCharacter){
                 $scope.selectedCharacter = $scope.characters[0];
                 $scope.newCharFamilyName = $scope.characters[0].family_name;
+                if (!$scope.selectedProvince){
+                    $scope.selectProvince($scope.selectedCharacter.location);
+                }
+            } else if (!$scope.selectedProvince) {
+                $scope.selectProvince(null);
             }
         });
-    }
+    };
 
     $scope.loading = function (){
         for (var i=0; i<$scope.loadedItemsArr.length; i++){
             var index = $scope.loadedItemsArr[i];
             $scope.loadedItemsObj[index] = false;
         }
-    }
+    };
 
     $scope.load = function (){
 
@@ -204,6 +213,29 @@ app.directive('bsTooltip', function (){
     };
 
     /**** ------------ Char Manipulation END   ------- ***/
+    /**** ------------ Map Manipulation START ---------***/
+    $scope.selectProvince = function(location){
+        if (!location){
+            $scope.selectedProvince = provinceList.provinceGivenLocation(null); 
+        } else {
+            $scope.selectedProvince = provinceList.provinceGivenLocation(location);
+            $scope.selectedRegion = location; 
+        }
+    };
+
+    $scope.cycleProvinceLeft = function (){
+        //console.log($scope.selectedProvince.index);
+        $scope.selectedRegion = null; 
+        $scope.selectedProvince = provinceList.cycleLeft($scope.selectedProvince.index);
+
+    };
+
+    $scope.cycleProvinceRight = function (){
+        $scope.selectedRegion = null; 
+        $scope.selectedProvince = provinceList.cycleRight($scope.selectedProvince.index);
+    };
+
+    /**** ------------ Map Manipulation END ---------***/
     /*** -------------- Run START ------------- ***/
     //loading must be seperate from load so modals can disapear on refresh
     $scope.loading();

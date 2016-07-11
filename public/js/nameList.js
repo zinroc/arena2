@@ -633,6 +633,10 @@ Col1[124] = "Kalaincena";
 Col2[124] = "Reindane";
 Col3[124] = "Zannah";
 
+/**
+ * Use these function to navigate static name data inside client-side code
+ */
+
 var nameList = {
 
     getName: function (index_1, index_2){
@@ -647,6 +651,10 @@ var nameList = {
         }
     },
 }
+
+/**
+ * Use these function to navigate static name data inside server-side code
+ */
 
 module.exports = nameList = {
 	getName: function (index_1, index_2){

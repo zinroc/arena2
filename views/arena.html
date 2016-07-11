@@ -65,7 +65,25 @@
                 </div>
             </div>
 
+            <!-- MAIN MAP -->
 
+            <div id="worldMap-container">
+
+                <div class="provinceArrows" ng-click="cycleProvinceLeft()">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </div>
+                <div id="provinceTitle">
+                    <h1>{{selectedProvince.name.toTitleCase()}}</h1>
+                </div>
+                <div class="provinceArrows" ng-click="cycleProvinceRight()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </div>
+                <div id="mapChart">
+                </div>
+            </div>
+
+
+            <!--- MODALS -->
             <div id="deleteCharacter-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -122,5 +140,7 @@
         <script src="js/api_service.js"></script>
         <script src="js/arena_ctrl.js"></script>
         <script src="js/nameList.js"></script>
+        <script src="js/provinceList.js"></script>
+
     </body>
 </html>
