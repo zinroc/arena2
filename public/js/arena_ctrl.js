@@ -75,16 +75,20 @@ app.directive('bsTooltip', function (){
             console.log("Got Characters");
             console.log(response.data);
             $scope.characters = response.data;
-            $scope.loadedItemsObj['chars'] = true;
+            if ($scope.characters.length){
+                $scope.newCharFamilyName = $scope.characters[0].family_name;
+            }
+
             if ($scope.characters.length && !$scope.selectedCharacter){
                 $scope.selectedCharacter = $scope.characters[0];
-                $scope.newCharFamilyName = $scope.characters[0].family_name;
                 if (!$scope.selectedProvince){
                     $scope.selectProvince($scope.selectedCharacter.location);
                 }
             } else if (!$scope.selectedProvince) {
                 $scope.selectProvince(null);
             }
+            $scope.loadedItemsObj['chars'] = true;
+
         });
     };
 
@@ -120,6 +124,7 @@ app.directive('bsTooltip', function (){
         $('#settings-modal').modal('hide');
         $('#createCharacter-modal').modal('hide');
         $('#deleteCharacter-modal').modal('hide');
+        $('#spawnCharacter-modal').modal('hide');
 
     };
 
@@ -171,7 +176,9 @@ app.directive('bsTooltip', function (){
     }; 
 
     $scope.setCharFamilyName = function () {
-        $scope.newCharFamilyName = utils.newName();
+        if(!$scope.characters.length) {
+            $scope.newCharFamilyName = utils.newName();
+        }
     }; 
 
     $scope.setCharNames = function (){
@@ -252,11 +259,28 @@ app.directive('bsTooltip', function (){
         }
     };
 
+    $scope.spawnCharacter = function (){
+        console.log($scope.selectedRegion, $scope.selectedCharacter.name);
+    };
+
     /**** ------------ Char Manipulation END   ------- ***/
     /**** ------------ Map Manipulation START ---------***/
+
+    /**
+    * Select a location based on the location_name STRING
+    */
+    $scope.selectLocation = function (location_name){
+        $scope.selectedRegion = location_name;
+    };
+
+    /**
+    *   Select the province OBJECT given a location STRING
+    */
+
     $scope.selectProvince = function(location){
         if (!location){
             $scope.selectedProvince = provinceList.provinceGivenLocation(null); 
+            $scope.selectedRegion = null;
         } else {
             $scope.selectedProvince = provinceList.provinceGivenLocation(location);
             $scope.selectedRegion = location; 
@@ -289,6 +313,23 @@ app.directive('bsTooltip', function (){
                 }
             }, 400);
     };
+
+
+    /**
+    *   Function for dynamic client side CSS only
+    */
+    $scope.viewArrowTwinkle = function () {
+        if($scope.characters.length ===0){
+            return "";
+        } else if (!$scope.selectedCharacter) {
+            return "";
+        }else if($scope.selectedCharacter.location){
+            return "";
+        } else if (!$scope.selectedCharacter.location){
+            return "twinkle";
+        }
+    };
+
 
     /**
     *   Function for dynamic client side CSS only

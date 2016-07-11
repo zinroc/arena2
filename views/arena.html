@@ -62,35 +62,35 @@
 
             <div id="worldMap-container">
 
-                <div class="provinceArrows" ng-click="cycleProvinceLeft()" ng-if="viewRegionSlideStatus==='off'">
+                <div class="provinceArrows {{viewArrowTwinkle()}}" ng-click="cycleProvinceLeft()" ng-if="viewRegionSlideStatus==='off'">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </div>
                 <div id="provinceTitle">
                     <h1>{{selectedProvince.name.toTitleCase()}}</h1>
                 </div>
-                <div class="provinceArrows" ng-click="cycleProvinceRight()" ng-if="viewRegionSlideStatus==='off'">
+                <div class="provinceArrows {{viewArrowTwinkle()}}" ng-click="cycleProvinceRight()" ng-if="viewRegionSlideStatus==='off'">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </div>
                 <div id="mapChart" class="container-fluid">
                     <div class="row {{viewRegionSlide()}}">
                         <!-- If character has a location or have no characters, don't need to spawn in -->
                         <div class="col-md-3">
-                            <div id="capital" class="{{viewRegionFlicker()}}">
+                            <div id="capital" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div id="region" class="{{viewRegionFlicker()}}" >
+                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[0].toTitleCase()}}"></span>
                             </div>
                         </div>
                         <div class="col-md-3"  >
-                            <div id="region" class="{{viewRegionFlicker()}}"  >
+                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[1].toTitleCase()}}"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div id="region" class="{{viewRegionFlicker()}}"  >
+                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[2].toTitleCase()}}"></span>
                             </div>
                         </div>
@@ -100,6 +100,24 @@
 
 
             <!--- MODALS -->
+            <div id="spawnCharacter-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center">Spawn {{selectedCharacter.name}} {{selectedCharacter.family_name}} in {{selectedRegion.toTitleCase()}}? </h3>
+                        </div>
+                        <div class="modal-body">
+                            A new character may spawn in any region. Choose carefully.<br> 
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-success" ng-click="spawnCharacter()"> Yes </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="deleteCharacter-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">

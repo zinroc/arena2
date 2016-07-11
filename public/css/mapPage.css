@@ -83,6 +83,7 @@
 }
 
 
+
 .selectedCharacterPortrait .glyphicon-user {
 	font-size: 55px;
 	margin-top: 5px;
@@ -192,6 +193,9 @@
 	animation: fadeLeft 0.6s 0s linear;
 }
 
+.twinkle {
+}
+
 @keyframes fadeLeft {
     0% {
         opacity: 1;
@@ -235,6 +239,25 @@
     100%{
     	opacity: 0; 
     	left: 400px;
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 1;
+        color: darkgreen;
+    }
+    25%{
+        color: yellow;
+    }
+    50%{
+        color: gold;
+    }
+    75% {
+        color: orange;
+    }
+    100%{
+        color: lime;
     }
 }
 /* Main Map Page END */
