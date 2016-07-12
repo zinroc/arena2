@@ -221,45 +221,6 @@ app.directive('bsTooltip', function (){
     };
 
     /**
-    *   Function for dynamic client side CSS only
-    */
-    $scope.viewCharActive = function (char_id){
-        if (!char_id){
-            return "";
-        } else if (!$scope.selectedCharacter){
-            return "";
-        }else if (char_id === $scope.selectedCharacter.id){
-            return 'selectedCharacterPortrait';
-        } else {
-            return 'characterPortrait';
-        }
-    };
-
-    /**
-    *   Function for dynamic client side CSS only
-    */
-    $scope.viewCharButtonActive = function (){
-        if (!$scope.characters.length){
-            return "createCharButton-active";
-        } else if ($scope.characters.length && $scope.characters.length < $scope.characterCap){
-            return "createCharButton-active";
-        } else {
-            return "";
-        }
-    };
-
-    /**
-    *   Function for dynamic client side CSS only
-    */
-    $scope.viewCharButtonFlicker = function (){
-        if (!$scope.characters.length){
-            return "flicker";
-        } else {
-            return "";
-        }
-    };
-
-    /**
     * Places the character in a spawn location
     */
 
@@ -276,6 +237,64 @@ app.directive('bsTooltip', function (){
         });
 
     };
+
+    /**
+    *   Function for dynamic client side CSS only
+    *   Shows which character is currently selected
+    */
+    $scope.viewCharActive = function (char_id){
+        if (!char_id){
+            return "";
+        } else if (!$scope.selectedCharacter){
+            return "";
+        }else if (char_id === $scope.selectedCharacter.id){
+            return 'selectedCharacterPortrait';
+        } else {
+            return 'characterPortrait';
+        }
+    };
+
+    /**
+    *   Function for dynamic client side CSS only
+    *   When the player has the option to make more characters, shows a green button
+    */
+    $scope.viewCharButtonActive = function (){
+        if (!$scope.characters.length){
+            return "createCharButton-active";
+        } else if ($scope.characters.length && $scope.characters.length < $scope.characterCap){
+            return "createCharButton-active";
+        } else {
+            return "";
+        }
+    };
+
+    /**
+    *   Function for dynamic client side CSS only
+    *   When a player does not have characters, shows them how to make one.
+    */
+    $scope.viewCharButtonFlicker = function (){
+        if (!$scope.characters.length){
+            return "flicker";
+        } else {
+            return "";
+        }
+    };
+
+    /**
+    *   Function for dynamic client side CSS only
+    *   Makes CSS show what region selected character is in.
+    */
+    $scope.viewCharacterPresent = function (location){
+        if(!$scope.selectedCharacter){
+            return "";
+        } else if ($scope.selectedCharacter.location === location){
+            return "youAreHere";
+        } else {
+            return "";
+        }
+    };
+
+
 
     /**** ------------ Char Manipulation END   ------- ***/
     /**** ------------ Map Manipulation START ---------***/

@@ -75,23 +75,13 @@
                     <div class="row {{viewRegionSlide()}}">
                         <!-- If character has a location or have no characters, don't need to spawn in -->
                         <div class="col-md-3">
-                            <div id="capital" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.capital)">
+                            <div id="capital" class="{{viewRegionFlicker()}} {{viewCharacterPresent(selectedProvince.capital)}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
-                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[0].toTitleCase()}}"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3"  >
-                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
-                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[1].toTitleCase()}}"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="region" class="{{viewRegionFlicker()}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(selectedProvince.regions[0])">
-                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.regions[2].toTitleCase()}}"></span>
+                        <div class="col-md-3" ng-repeat="region in selectedProvince.regions">
+                            <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}}" data-toggle="modal" data-target="#spawnCharacter-modal" ng-click="selectLocation(region)">
+                                <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{region.toTitleCase()}}"></span>
                             </div>
                         </div>
                     </div>

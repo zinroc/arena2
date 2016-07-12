@@ -132,6 +132,8 @@
 
 /* Main Map Page START */
 
+
+
 #worldMap-container {
 	position: relative;
 	border: black thick solid;
@@ -195,6 +197,15 @@
 
 .twinkle {
     animation: twinkle 2s 0s linear alternate infinite;
+}
+
+
+#region.youAreHere {
+	outline: 8px gold solid;
+}
+
+#capital.youAreHere {
+	outline: 8px gold solid;
 }
 
 @keyframes fadeLeft {

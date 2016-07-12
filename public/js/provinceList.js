@@ -67,7 +67,7 @@ var provinceList = {
 	                return province;
 	            } else {
 	                for (var j=0; j<province.regions.length; j++){
-	                    var region = regions[j];
+	                    var region = province.regions[j];
 	                    if (location === region){
 	                    	province.index = i;
 	                        return province; 
