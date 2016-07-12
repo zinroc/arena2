@@ -90,6 +90,61 @@
 
 
             <!--- MODALS -->
+
+            <div id="nearbyRegion-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center">{{selectedRegion.toTitleCase()}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            {{selectedRegion.toTitleCase()}} is in the same province as {{selectedCharacter.name.toTitleCase()}} {{selectedCharacter.family_name.toTitleCase()}}<br> 
+
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-purple" ng-click=""> Inspect </p>
+                            <p class="btn btn-warning" ng-click="promptTravel()"> Travel </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                        <div ng-if="toggleTravelInfo" class="modal-body">
+                            Traveling to {{selectedRegion.toTitleCase()}} will take 2 turns. 
+                        </div>
+                        <div ng-if="toggleTravelInfo" class="modal-footer">
+                            <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="distantRegion-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center">{{selectedRegion.toTitleCase()}} </h3>
+                        </div>
+                        <div class="modal-body">
+                            {{selectedRegion.toTitleCase()}} is in a different province than {{selectedCharacter.name.toTitleCase()}} {{selectedCharacter.family_name.toTitleCase()}}<br> 
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-purple" ng-click=""> Inspect </p>
+                            <p class="btn btn-warning" ng-click="promptTravel()"> Travel </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                        <div ng-if="toggleTravelInfo" class="modal-body">
+                            Traveling to {{selectedRegion.toTitleCase()}} will take 4 turns. 
+                        </div>
+                        <div ng-if="toggleTravelInfo" class="modal-footer">
+                            <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div id="spawnCharacter-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">

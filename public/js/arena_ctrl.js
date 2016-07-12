@@ -44,6 +44,9 @@ app.directive('bsTooltip', function (){
     $scope.viewRegionSlideStatus = "off";
     $scope.characterSelectLock = "off";
 
+    /** Are you sure Toggles **/
+    $scope.toggleTravelInfo = false;
+
     /** ------------- Loading START ------------- **/
     /**
      * Load player Info
@@ -128,6 +131,8 @@ app.directive('bsTooltip', function (){
         $('#createCharacter-modal').modal('hide');
         $('#deleteCharacter-modal').modal('hide');
         $('#spawnCharacter-modal').modal('hide');
+        $('#nearbyRegion-modal').modal('hide');
+        $('#distantRegion-modal').modal('hide');
 
     };
 
@@ -341,10 +346,18 @@ app.directive('bsTooltip', function (){
     /**** ------------ Map Manipulation START ---------***/
 
     /**
+    *   Toggles travel info in trave modal
+    */
+    $scope.promptTravel = function (){
+        $scope.toggleTravelInfo = true;
+    };
+
+    /**
     * Select a location based on the location_name STRING
     */
     $scope.selectLocation = function (location_name){
         $scope.selectedRegion = location_name;
+        $scope.toggleTravelInfo = false;
     };
 
     /**
@@ -355,8 +368,17 @@ app.directive('bsTooltip', function (){
             return "";
         }  else if (!$scope.selectedCharacter.location){
             return "#spawnCharacter-modal";
-        } else {
+        } else if ($scope.selectedCharacter.location === $scope.selectedRegion){
+            //player wants to interact with their current location
             return "";
+
+        } else if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name === provinceList.provinceGivenLocation($scope.selectedRegion).name){
+            //player wants to interact with a region in the same province
+            return "#nearbyRegion-modal";
+        } else if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name === provinceList.provinceGivenLocation($scope.selectedRegion).name) {
+            //player wants to interact with a region in a different province
+        } else {
+            return "#distantRegion-modal";
         }
     };
 

@@ -206,10 +206,16 @@
 
 #region.youAreHere {
 	outline: 8px gold solid;
+	background: yellow;
 }
 
 #capital.youAreHere {
 	outline: 8px gold solid;
+	background: yellow;
+}
+
+.btn-purple {
+	background: orchid;
 }
 
 @keyframes fadeLeft {
