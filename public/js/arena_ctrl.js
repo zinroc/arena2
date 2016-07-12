@@ -219,12 +219,16 @@ app.directive('bsTooltip', function (){
     *   INPUT character OBJECT row from characters table
     */
     $scope.selectCharacter = function (character){
-        console.log($scope.viewRegionSlideStatus, $scope.characterSelectLock);
+
         if ($scope.viewRegionSlideStatus === 'off' && $scope.characterSelectLock === 'off'){
             $scope.selectedCharacter = character;
             $scope.newCharFamilyName = character.family_name;
+
             // snap to character's location
-            if ($scope.selectedCharacter.location !== $scope.selectedRegion && $scope.selectedCharacter.location){
+            if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name !== 
+                provinceList.provinceGivenLocation($scope.selectedRegion).name
+             && $scope.selectedCharacter.location){
+
                 $scope.selectProvince($scope.selectedCharacter.location);
                 $scope.viewRegionSlideStatus = "right";
                 $scope.characterSelectLock = "on";
@@ -363,7 +367,7 @@ app.directive('bsTooltip', function (){
     $scope.selectProvince = function(location){
         if (!location){
             $scope.selectedProvince = provinceList.provinceGivenLocation(null); 
-            $scope.selectedRegion = null;
+            $scope.selectedRegion = $scope.selectedProvince.capital;
         } else {
             $scope.selectedProvince = provinceList.provinceGivenLocation(location);
             $scope.selectedRegion = location; 
@@ -374,27 +378,38 @@ app.directive('bsTooltip', function (){
         //console.log($scope.selectedProvince.index);
         $scope.selectedRegion = null; 
         $scope.selectedProvince = provinceList.cycleLeft($scope.selectedProvince.index);
+        $scope.selectedRegion = $scope.selectedProvince.capital;
+
         /** Sliding animations **/ 
         $scope.viewRegionSlideStatus = 'left';
+        $scope.characterSelectLock = 'on';
         setTimeout(function (){
                 if ($scope.viewRegionSlideStatus === 'left'){
                     $scope.viewRegionSlideStatus = 'off'; 
 
                 }
             }, 400);
+        setTimeout(function (){
+                $scope.characterSelectLock = 'off';
+            }, 1200);
     };
 
     $scope.cycleProvinceRight = function (){
         $scope.selectedRegion = null; 
         $scope.selectedProvince = provinceList.cycleRight($scope.selectedProvince.index);
+        $scope.selectedRegion = $scope.selectedProvince.capital;
         /** Sliding animations **/ 
         $scope.viewRegionSlideStatus = 'right';
+        $scope.characterSelectLock = 'on';
         setTimeout(function (){
                 if ($scope.viewRegionSlideStatus === 'right'){
                     $scope.viewRegionSlideStatus = 'off'; 
 
                 }
             }, 400);
+        setTimeout(function (){
+                $scope.characterSelectLock = 'off';
+            }, 1200);
     };
 
 
