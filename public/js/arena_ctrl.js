@@ -39,7 +39,10 @@ app.directive('bsTooltip', function (){
     /** Map Manipulation **/ 
     $scope.selectedProvince = null;
     $scope.selectedRegion = null; 
+
+    /** CSS animation parameters **/ 
     $scope.viewRegionSlideStatus = "off";
+    $scope.characterSelectLock = "off";
 
     /** ------------- Loading START ------------- **/
     /**
@@ -216,8 +219,32 @@ app.directive('bsTooltip', function (){
     *   INPUT character OBJECT row from characters table
     */
     $scope.selectCharacter = function (character){
-        $scope.selectedCharacter = character;
-        $scope.newCharFamilyName = character.family_name;
+        console.log($scope.viewRegionSlideStatus, $scope.characterSelectLock);
+        if ($scope.viewRegionSlideStatus === 'off' && $scope.characterSelectLock === 'off'){
+            $scope.selectedCharacter = character;
+            $scope.newCharFamilyName = character.family_name;
+            // snap to character's location
+            if ($scope.selectedCharacter.location !== $scope.selectedRegion && $scope.selectedCharacter.location){
+                $scope.selectProvince($scope.selectedCharacter.location);
+                $scope.viewRegionSlideStatus = "right";
+                $scope.characterSelectLock = "on";
+                setTimeout(function (){
+                    if ($scope.viewRegionSlideStatus === 'right'){
+                        $scope.viewRegionSlideStatus = 'off'; 
+
+                    }
+                }, 400);
+                //it takes longer for the main map to register changes in flags than it does for the
+                // character scrolling list, so a seperate slower tag needs to be made for that list
+                setTimeout(function (){
+                    if ($scope.characterSelectLock === 'on'){
+                        $scope.characterSelectLock = 'off'; 
+
+                    }
+                }, 1200);
+
+            }
+        }
     };
 
     /**
@@ -293,7 +320,17 @@ app.directive('bsTooltip', function (){
             return "";
         }
     };
-
+    /**
+    *   Function for dynamic client side CSS only
+    *   Makes CSS show progress cursor when character reselection is locked
+    */
+    $scope.viewCharacterSelectLock = function (){
+        if ($scope.characterSelectLock === 'on'){
+            return "progress"; 
+        } else {
+            return "";
+        }
+    };
 
 
     /**** ------------ Char Manipulation END   ------- ***/

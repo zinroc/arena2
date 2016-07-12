@@ -41,7 +41,7 @@
             <div id="characterSelector-container">
                 <div class="portraitList-container" ng-repeat="char in characters">
                     <!-- dynamic css for selected / unselected character portraits -->
-                    <div class="{{viewCharActive(char.id)}}" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}} {{char.family_name}}" ng-click="selectCharacter(char)">
+                    <div class="{{viewCharActive(char.id)}} {{viewCharacterSelectLock()}}" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{char.name}} {{char.family_name}}" ng-click="selectCharacter(char)">
                         <span class="glyphicon glyphicon-user"></span>
                     </div>
                     <span ng-if="selectedCharacter.id === char.id" class="badge" data-toggle="modal" data-target="#deleteCharacter-modal">DEL</span>

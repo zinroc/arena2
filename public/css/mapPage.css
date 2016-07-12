@@ -110,6 +110,10 @@
 	text-align: center;
 }
 
+.progress {
+	cursor: progress;
+}
+
 @keyframes flicker {
     0% {
         opacity: 1;
