@@ -97,6 +97,14 @@ app.post("/api/characters/deletePlayerCharacter", function (req, res) {
     }
 });
 
+app.post("/api/characters/spawnPlayerCharacter", function (req, res) {
+    if (req.body.email) {
+        characters.spawnPlayerCharacter(req.body.email, req.body.id, req.body.location, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
 /********************** Characters *************************************/
 /********************* API v2 *************************/
 

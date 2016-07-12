@@ -259,8 +259,22 @@ app.directive('bsTooltip', function (){
         }
     };
 
+    /**
+    * Places the character in a spawn location
+    */
+
     $scope.spawnCharacter = function (){
-        console.log($scope.selectedRegion, $scope.selectedCharacter.name);
+        console.log($scope.selectedRegion, $scope.selectedCharacter.id);
+        
+        api_service.spawnCharacter($scope.email, $scope.selectedCharacter.id, $scope.selectedRegion)
+        .then(function (response){
+            console.log("character spawned into " + $scope.selectedRegion);
+            console.log(response.data);
+            $scope.selectedCharacter.location = $scope.selectedRegion; 
+            $scope.loadCharacterInfo();
+            $scope.hideModals();
+        });
+
     };
 
     /**** ------------ Char Manipulation END   ------- ***/

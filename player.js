@@ -27,24 +27,4 @@ module.exports = players = {
             response.json(result).end();
         });
     },
-    /**
-    *   return scroll pack info that player owns
-    *   called from client
-    */
-    getScrollPacks: function (email, response) {
-        playerStore.getScrollPacks(email)
-        .then(function (result){
-            response.json(result).end();
-        });
-    },
-    /**
-    *   create a scroll pack for the player
-    *   called from client
-    */
-    buyScrollPack: function (email, response){
-        playerStore.buyScrollPack(email)
-        .then(function (result){
-            response.json(result).end();
-        });
-    }
 };

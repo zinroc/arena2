@@ -48,5 +48,12 @@ module.exports = characters = {
         .then(function (result){
             response.json(result).end();
         });
+    },
+    //called from client
+    spawnPlayerCharacter: function(email, id, location, response){
+        characterStore.spawnPlayerCharacter(email, id, location)
+        .then(function (result){
+            response.json(result).end();
+        });
     }
 };
