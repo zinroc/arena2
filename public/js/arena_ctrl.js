@@ -307,6 +307,19 @@ app.directive('bsTooltip', function (){
     };
 
     /**
+    *   Create appropriate modal when player clicks on a location
+    */
+    $scope.locationModalTrigger = function (){
+        if(!$scope.selectedCharacter){
+            return "";
+        }  else if (!$scope.selectedCharacter.location){
+            return "#spawnCharacter-modal";
+        } else {
+            return "";
+        }
+    };
+
+    /**
     *   Select the province OBJECT given a location STRING
     */
 
