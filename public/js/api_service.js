@@ -44,6 +44,9 @@ app.factory("api_service", function api_service ($http) {
         return this.postJSON("/api/characters/spawnPlayerCharacter", {email: email, id: id, location: location});
     };
   
+    this.beginTraveling = function (email, id, destination){
+        return this.postJSON("/api/characters/beginTraveling", {email: email, id: id, destination: destination});
+    };
 
     return this;
 });

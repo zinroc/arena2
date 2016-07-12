@@ -55,5 +55,12 @@ module.exports = characters = {
         .then(function (result){
             response.json(result).end();
         });
-    }
+    }, 
+    //called from client
+    beginTraveling: function(email, id, destination, response){
+        characterStore.beginTraveling(email, id, destination)
+        .then(function (result){
+            response.json(result).end();
+        });
+    }, 
 };

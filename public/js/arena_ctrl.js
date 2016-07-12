@@ -221,10 +221,42 @@ app.directive('bsTooltip', function (){
     /**** ------------ Char Manipulation START ------- ***/
 
     /**
+    *   Locks a character into a traveling state
+    */
+    $scope.beginTraveling = function (){
+
+        api_service.beginTraveling($scope.email, $scope.selectedCharacter.id, $scope.selectedRegion)
+        .then(function (response){
+            console.log("character traveling");
+            console.log(response.data);
+            $scope.loadCharacterInfo();
+            $scope.hideModals();
+            //reset selected character since they are traveling now. 
+            var character = $scope.findCharacterById($scope.selectedCharacter.id); 
+            $scope.selectCharacter(character);
+
+        });
+    };
+
+    /**
+    *   @params id INT
+    *   @return character OBJECT
+    */  
+    $scope.findCharacterById = function (id){
+        for (var i=0; i<$scope.characters.length; i++){
+            var character = $scope.characters[i];
+            if (character.id === id){
+                return character;
+            }
+        }
+    };
+
+    /**
     *   INPUT character OBJECT row from characters table
     */
     $scope.selectCharacter = function (character){
 
+        //do not select character if animations are playing
         if ($scope.viewRegionSlideStatus === 'off' && $scope.characterSelectLock === 'off'){
             $scope.selectedCharacter = character;
             $scope.newCharFamilyName = character.family_name;

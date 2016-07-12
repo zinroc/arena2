@@ -59,6 +59,8 @@ module.exports = function (knex) {
                         table.string("location");
                         table.string("owner");
                         table.string("family_name");
+                        table.string("destination"); 
+                        table.integer("travel_progress");
                     });
                 }
             });
