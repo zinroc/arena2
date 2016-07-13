@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/topbar.css" />
         <link rel="stylesheet" href="/css/mapPage.css" />
+        <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
 
         <!--
         <link rel="stylesheet" href="css/style.css" > 
@@ -78,6 +79,7 @@
                             <div id="capital" class="{{viewRegionFlicker()}} {{viewCharacterPresent(selectedProvince.capital)}}" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
                             </div>
+                            <span class="fa fa-camera-retro fa-3x top"></span>
                         </div>
                         <div class="col-md-3" ng-repeat="region in selectedProvince.regions">
                             <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}}" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(region)">
