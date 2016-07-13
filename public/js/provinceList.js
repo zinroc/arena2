@@ -53,41 +53,7 @@ var provinces = [	{	name: 'hell rift artic',
 
 
 
-/**
- * Use these function to navigate static name data inside server-side code
- */
 
-module.exports = provinceList = {
-
-    /**
-    * Return all the regions for server regions table population
-    */
-    regions: function () {
-    	var regions = [];
-    	for (var i=0; i<provinces.length; i++){
-    		for (var j=0; j<4; j++){
-    			var index = i*4 + j; 
-    			regions[index] = {};
-    			if (j==3){
-	    			regions[index].name = provinces[i].capital;
-	    			regions[index].province = provinces[i].name;
-	    			regions[index].x_cord = provinces[i].x_cord;
-	    			regions[index].y_cord = provinces[i].y_cord;
-	    			regions[index].capital = true;
-	    			regions[index].index = 3;
-    			} else {
-	    			regions[index].name = provinces[i].regions[j];
-	    			regions[index].province = provinces[i].name;
-	    			regions[index].x_cord = provinces[i].x_cord;
-	    			regions[index].y_cord = provinces[i].y_cord;
-	    			regions[index].capital = false;
-	    			regions[index].index = j;
-    			}
-    		}
-    	}
-    	return regions;
-    },
-};
 
 /**
  * Use these function to navigate static province data inside client-side code
@@ -148,4 +114,41 @@ var provinceList = {
     	return province; 
     }
 
-}
+};
+
+
+/**
+ * Use these function to navigate static name data inside server-side code
+ */
+
+module.exports = provinceList = {
+
+    /**
+    * Return all the regions for server regions table population
+    */
+    regions: function () {
+    	var regions = [];
+    	for (var i=0; i<provinces.length; i++){
+    		for (var j=0; j<4; j++){
+    			var index = i*4 + j; 
+    			regions[index] = {};
+    			if (j==3){
+	    			regions[index].name = provinces[i].capital;
+	    			regions[index].province = provinces[i].name;
+	    			regions[index].x_cord = provinces[i].x_cord;
+	    			regions[index].y_cord = provinces[i].y_cord;
+	    			regions[index].capital = true;
+	    			regions[index].index = 3;
+    			} else {
+	    			regions[index].name = provinces[i].regions[j];
+	    			regions[index].province = provinces[i].name;
+	    			regions[index].x_cord = provinces[i].x_cord;
+	    			regions[index].y_cord = provinces[i].y_cord;
+	    			regions[index].capital = false;
+	    			regions[index].index = j;
+    			}
+    		}
+    	}
+    	return regions;
+    },
+};
