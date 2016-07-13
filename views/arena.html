@@ -131,7 +131,8 @@
                             <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
                         </div>
                         <div ng-if="toggleTravelInfo" class="modal-body">
-                            Traveling to {{selectedRegion.toTitleCase()}} will take more than 2 turns. 
+                            Traveling east to {{selectedRegion.toTitleCase()}} will take {{calculateEast()}} turns or more. <br>
+                            Traveling west to {{selectedRegion.toTitleCase()}} will take {{calculateWest()}} turns or more
                         </div>
                         <div ng-if="toggleTravelInfo" class="modal-footer">
                             <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
@@ -157,8 +158,8 @@
                             <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
                         </div>
                         <div ng-if="toggleTravelInfo" class="modal-body">
-                            Traveling to {{selectedRegion.toTitleCase()}} will take more than 4 turns. 
-                        </div>
+                            Traveling east to {{selectedRegion.toTitleCase()}} will take {{calculateEast()}} turns or more. <br>
+                            Traveling west to {{selectedRegion.toTitleCase()}} will take {{calculateWest()}} turns or more                        </div>
                         <div ng-if="toggleTravelInfo" class="modal-footer">
                             <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>

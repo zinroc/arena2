@@ -6,8 +6,6 @@ var provinces = [	{	name: 'hell rift artic',
 				  		regions: [
 				  			'winter wind fields', 'frost blossom cliff', 'ice breath vale'
 				  		], 
-				  		x_cord: 5,
-				  		y_cord: 0
 					},
 					{
 						name: 'tundra of gems', 
@@ -16,8 +14,6 @@ var provinces = [	{	name: 'hell rift artic',
 						regions: [
 							'twilight shard', 'jade pasture', 'quartz nether spikes'
 						],
-						x_cord: 5,
-						y_cord: 5
 					}, 
 					{
 						name: 'rust mesa desert',
@@ -26,8 +22,6 @@ var provinces = [	{	name: 'hell rift artic',
 						regions: [
 							'metal ink lair', 'crossroads', 'steel grove'
 						],
-						x_cord: 5,
-						y_cord: 10
 					},
 					{
 						name: 'ivy beach',
@@ -36,8 +30,6 @@ var provinces = [	{	name: 'hell rift artic',
 						regions: [
 							'port of echoes', 'shadow island', 'lagoon of storms'
 						],
-						x_cord: 10, 
-						y_cord: 5
 					},
 					{
 						name: 'thorn jungle',
@@ -46,8 +38,6 @@ var provinces = [	{	name: 'hell rift artic',
 						regions: [
 							'gods flesh gardens', 'smoke woods', 'silver marsh'
 						],
-						x_cord: 0, 
-						y_cord: 5
 					}
 				];
 
@@ -60,6 +50,29 @@ var provinces = [	{	name: 'hell rift artic',
  */
 
 var provinceList = {
+
+	/**
+	* @param location STRING
+	*/
+	getIndexesFromLocation: function (location){
+		var result = {}
+		for (var i=0; i<provinces.length; i++){
+			var province = provinces[i];
+			if(location === province.capital){
+				result.region_index = 0;
+				result.province_index = i; 
+				return result;
+			}
+			for (var j=0; j<province.regions.length; j++){
+				var region = province.regions[j];
+				if (location === region){
+					result.region_index = j+1; 
+					result.province_index = i;
+					return result;
+				}
+			}
+		}
+	},
 
     /**
     *   VAR location STRING
@@ -135,17 +148,13 @@ module.exports = provinceList = {
     			if (j==3){
 	    			regions[index].name = provinces[i].capital;
 	    			regions[index].province = provinces[i].name;
-	    			regions[index].x_cord = provinces[i].x_cord;
-	    			regions[index].y_cord = provinces[i].y_cord;
 	    			regions[index].capital = true;
-	    			regions[index].index = 3;
+	    			regions[index].index = 0;
     			} else {
 	    			regions[index].name = provinces[i].regions[j];
 	    			regions[index].province = provinces[i].name;
-	    			regions[index].x_cord = provinces[i].x_cord;
-	    			regions[index].y_cord = provinces[i].y_cord;
 	    			regions[index].capital = false;
-	    			regions[index].index = j;
+	    			regions[index].index = j+1;
     			}
     		}
     	}

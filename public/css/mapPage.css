@@ -148,6 +148,7 @@
 	text-align: center;
 	background: yellow;
 	border-radius: 35%;
+	border-bottom: black thick solid;
 }
 
 #worldMap-container {

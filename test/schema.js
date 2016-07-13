@@ -78,8 +78,6 @@ module.exports = function (knex) {
                         table.increments("id");
                         table.string("name").unique();
                         table.string("province");
-                        table.integer("x_cord");
-                        table.integer("y_cord");
                         table.boolean("capital"); 
                         table.integer("index");
                     });

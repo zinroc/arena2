@@ -397,6 +397,57 @@ app.directive('bsTooltip', function (){
     /**** ------------ Map Manipulation START ---------***/
 
     /**
+    *   Calculate the minimum time it would take the selected character to travel from
+    *   their location to the selected region if traveling East
+    */
+    $scope.calculateEast = function (){
+        var province_distance = 4; 
+        var destination_indexes = provinceList.getIndexesFromLocation($scope.selectedRegion);
+        var location_indexes = provinceList.getIndexesFromLocation($scope.selectedCharacter.location);
+
+        var provinceVector = destination_indexes.province_index - location_indexes.province_index; 
+        var regionVector = destination_indexes.region_index - location_indexes.region_index;
+
+        var maxTraveLength = 3*5 + 4*4; //distance within regions + distance between regions
+
+        var travelLength = 1;//minimum 
+        if (provinceVector > 0){ // destination east of location
+            travelLength += provinceVector*province_distance; //gaps between provinces
+            travelLength += (provinceVector-1)*3; //distance within provinces
+            travelLength += 3 - location_indexes.region_index; //distance within starting province
+            travelLength += destination_indexes.region_index; //distance within ending province
+            return travelLength;
+        } else if (provinceVector < 0){ // destination west of location
+            travelLength += (5+provinceVector)*province_distance; // gaps between provinces
+            travelLength += (5+provinceVector - 1)*3; //distance within provinces
+            travelLength += 3 - location_indexes.region_index; //distance within starting province
+            travelLength += destination_indexes.region_index; //distance within ending province
+            return travelLength;
+        } else if (provinceVector === 0 && regionVector > 0){ // destination east of location
+            travelLength += regionVector; //destination within region
+            return travelLength;
+        } else if (provinceVector === 0 && regionVector < 0){ // destination west of location
+            travelLength += maxTraveLength + regionVector; //taking the long route...
+            return travelLength;
+        } else {
+            return 0;
+        }
+    };
+
+    /**
+    *   Calculate the minimum time it would take the selected character to travel from
+    *   their location to the selected region if traveling West
+    */
+    $scope.calculateWest = function (){
+        var maxTraveLength = 3*5 + 4*4; //distance within regions + distance between regions
+        var eastTravel = $scope.calculateEast(); 
+        var travelLength = 1;
+        travelLength += maxTraveLength - eastTravel + 1;
+
+        return travelLength;
+    };
+
+    /**
     *   Toggles travel info in trave modal
     */
     $scope.promptTravel = function (){
