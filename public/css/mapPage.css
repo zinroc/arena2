@@ -136,7 +136,19 @@
 
 /* Main Map Page START */
 
+.top{
+	z-index: 100;
+}
 
+.inline {
+	display: inline-block;
+}
+
+.glow {
+	text-align: center;
+	background: yellow;
+	border-radius: 35%;
+}
 
 #worldMap-container {
 	position: relative;

@@ -81,18 +81,26 @@ app.directive('bsTooltip', function (){
             console.log("Got Characters");
             console.log(response.data);
             $scope.characters = response.data;
+            //don't start a new family if one exists
             if ($scope.characters.length){
                 $scope.newCharFamilyName = $scope.characters[0].family_name;
             }
-
+            //select the first character if none selected
             if ($scope.characters.length && !$scope.selectedCharacter){
                 $scope.selectedCharacter = $scope.characters[0];
                 if (!$scope.selectedProvince){
                     $scope.selectProvince($scope.selectedCharacter.location);
                 }
-            } else if (!$scope.selectedProvince) {
+
+            } else if (!$scope.selectedProvince) {//go to the 0th province if none selected and there are no characters
                 $scope.selectProvince(null);
             }
+            //reselect the selected character incase any property of theirs changed. 
+            if ($scope.characters.length && $scope.selectedCharacter){
+                var character = $scope.findCharacterById($scope.selectedCharacter.id); 
+                $scope.selectCharacter(character);
+            }
+
             $scope.loadedItemsObj['chars'] = true;
 
         });
@@ -229,12 +237,8 @@ app.directive('bsTooltip', function (){
         .then(function (response){
             console.log("character traveling");
             console.log(response.data);
-            $scope.loadCharacterInfo();
+            $scope.loadCharacterInfo()
             $scope.hideModals();
-            //reset selected character since they are traveling now. 
-            var character = $scope.findCharacterById($scope.selectedCharacter.id); 
-            $scope.selectCharacter(character);
-
         });
     };
 
@@ -355,8 +359,21 @@ app.directive('bsTooltip', function (){
     $scope.viewCharacterPresent = function (location){
         if(!$scope.selectedCharacter){
             return "";
-        } else if ($scope.selectedCharacter.location === location){
+        } else if ($scope.selectedCharacter.location === location && !$scope.selectedCharacter.destination){
             return "youAreHere";
+        } else {
+            return "";
+        }
+    };
+
+    /**
+    *
+    */
+    $scope.viewCharacterTraveling = function (location){
+        if(!$scope.selectedCharacter){
+            return "";
+        } else if ($scope.selectedCharacter.location === location && $scope.selectedCharacter.destination){
+            return "fa fa-blind fa-3x glow";
         } else {
             return "";
         }
