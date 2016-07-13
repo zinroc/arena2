@@ -64,6 +64,7 @@ module.exports = function (knex) {
                         table.string("destination"); 
                         table.integer("travel_progress");
                         table.string("direction");
+                        table.string("travel_success");
                     });
                 }
             });

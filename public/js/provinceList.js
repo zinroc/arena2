@@ -145,19 +145,20 @@ module.exports = provinceList = {
     		for (var j=0; j<4; j++){
     			var index = i*4 + j; 
     			regions[index] = {};
-    			if (j==3){
+    			if (j==0){
 	    			regions[index].name = provinces[i].capital;
 	    			regions[index].province = provinces[i].name;
 	    			regions[index].capital = true;
 	    			regions[index].index = 0;
     			} else {
-	    			regions[index].name = provinces[i].regions[j];
+	    			regions[index].name = provinces[i].regions[j-1];
 	    			regions[index].province = provinces[i].name;
 	    			regions[index].capital = false;
-	    			regions[index].index = j+1;
+	    			regions[index].index = j;
     			}
     		}
     	}
     	return regions;
     },
+
 };
