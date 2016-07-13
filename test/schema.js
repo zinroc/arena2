@@ -64,6 +64,25 @@ module.exports = function (knex) {
                     });
                 }
             });
-        }
+        }, 
+        /**
+        *   Create a regions table 
+        */
+        createRegionsTable: function (){
+            return knex.schema.hasTable("regions")
+            .then(function(exists){
+                if (!exists){
+                    return knex.schema.createTable("regions", function (table){
+                        table.increments("id");
+                        table.string("name").unique();
+                        table.string("province");
+                        table.integer("x_cord");
+                        table.integer("y_cord");
+                        table.boolean("capital"); 
+                        table.integer("index");
+                    });
+                }
+            });
+        },
     };
 };
