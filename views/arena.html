@@ -74,18 +74,20 @@
                 </div>
                 <div id="mapChart" class="container-fluid">
                     <div class="row {{viewRegionSlide()}}">
-                        <!-- If character has a location or have no characters, don't need to spawn in -->
+                        <!-- Capital Location -->
                         <div class="col-md-3">
                             <div id="capital" class="{{viewRegionFlicker()}} {{viewCharacterPresent(selectedProvince.capital)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
                             </div>
-                            <div class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline"></div>
+                            <div class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
                         </div>
+                        <!-- Regions -->
                         <div class="col-md-3" ng-repeat="region in selectedProvince.regions">
                             <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(region)">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{region.toTitleCase()}}"></span>
                             </div>
-                            <div class="{{viewCharacterTraveling(region)}} top inline"></div>
+                            <div class="{{viewCharacterTraveling(region)}} top inline pointer" ng-click="selectLocation(region)" data-toggle="modal" data-target="#travelInfo-modal">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,6 +95,24 @@
 
 
             <!--- MODALS -->
+            <div id="travelInfo-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center">Leaving {{selectedRegion.toTitleCase()}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            Destination: {{selectedCharacter.destination.toTitleCase()}}<br> 
+                            Success Bonus: +{{selectedCharacter.travel_progress}}
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div id="nearbyRegion-modal" class="modal fade">
                 <div class="modal-dialog">

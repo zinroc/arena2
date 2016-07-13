@@ -141,6 +141,8 @@ app.directive('bsTooltip', function (){
         $('#spawnCharacter-modal').modal('hide');
         $('#nearbyRegion-modal').modal('hide');
         $('#distantRegion-modal').modal('hide');
+        $('#travelInfo-modal').modal('hide');
+
 
     };
 
