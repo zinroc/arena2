@@ -76,17 +76,20 @@
                     <div class="row {{viewRegionSlide()}}">
                         <!-- Capital Location -->
                         <div class="col-md-3">
+                            <div ng-if="selectedCharacter.direction==='west'" class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer x-flip" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
                             <div id="capital" class="{{viewRegionFlicker()}} {{viewCharacterPresent(selectedProvince.capital)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
                             </div>
-                            <div class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
+                            <div ng-if="selectedCharacter.direction==='east'" class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
                         </div>
                         <!-- Regions -->
                         <div class="col-md-3" ng-repeat="region in selectedProvince.regions">
+                            <div ng-if="selectedCharacter.direction==='west'" class="{{viewCharacterTraveling(region)}} top inline pointer x-flip" ng-click="selectLocation(region)" data-toggle="modal" data-target="#travelInfo-modal">
+                            </div>
                             <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(region)">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{region.toTitleCase()}}"></span>
                             </div>
-                            <div class="{{viewCharacterTraveling(region)}} top inline pointer" ng-click="selectLocation(region)" data-toggle="modal" data-target="#travelInfo-modal">
+                            <div ng-if="selectedCharacter.direction==='east'" class="{{viewCharacterTraveling(region)}} top inline pointer" ng-click="selectLocation(region)" data-toggle="modal" data-target="#travelInfo-modal">
                             </div>
                         </div>
                     </div>
@@ -104,7 +107,8 @@
                         </div>
                         <div class="modal-body">
                             Destination: {{selectedCharacter.destination.toTitleCase()}}<br> 
-                            Success Bonus: +{{selectedCharacter.travel_progress}}
+                            Direction: {{selectedCharacter.direction.toTitleCase()}} <br>
+                            Success Bonus: +{{selectedCharacter.travel_progress}}<br>
                         </div>
                         <div class="modal-footer">
                             <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
@@ -114,35 +118,7 @@
             </div>
 
 
-            <div id="nearbyRegion-modal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title center">{{selectedRegion.toTitleCase()}}</h3>
-                        </div>
-                        <div class="modal-body">
-                            {{selectedRegion.toTitleCase()}} is in the same province as {{selectedCharacter.name.toTitleCase()}} {{selectedCharacter.family_name.toTitleCase()}}<br> 
-
-                        </div>
-                        <div class="modal-footer">
-                            <p class="btn btn-purple" ng-click=""> Inspect </p>
-                            <p class="btn btn-warning" ng-click="promptTravel()"> Travel </p>
-                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
-                        </div>
-                        <div ng-if="toggleTravelInfo" class="modal-body">
-                            Traveling east to {{selectedRegion.toTitleCase()}} will take {{calculateEast()}} turns or more. <br>
-                            Traveling west to {{selectedRegion.toTitleCase()}} will take {{calculateWest()}} turns or more
-                        </div>
-                        <div ng-if="toggleTravelInfo" class="modal-footer">
-                            <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
-                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="distantRegion-modal" class="modal fade">
+            <div id="travel-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -161,7 +137,8 @@
                             Traveling east to {{selectedRegion.toTitleCase()}} will take {{calculateEast()}} turns or more. <br>
                             Traveling west to {{selectedRegion.toTitleCase()}} will take {{calculateWest()}} turns or more                        </div>
                         <div ng-if="toggleTravelInfo" class="modal-footer">
-                            <p class="btn btn-warning" ng-click="beginTraveling()"> Begin Traveling </p>
+                            <p class="btn btn-warning" ng-click="travel('east')"> Travel East </p>
+                            <p class="btn btn-warning" ng-click="travel('west')"> Travel West </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
                         </div>
                     </div>

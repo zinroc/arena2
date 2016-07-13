@@ -57,8 +57,8 @@ module.exports = characters = {
         });
     }, 
     //called from client
-    beginTraveling: function(email, id, destination, response){
-        characterStore.beginTraveling(email, id, destination)
+    travel: function(email, id, destination, direction, response){
+        characterStore.travel(email, id, destination, direction)
         .then(function (result){
             response.json(result).end();
         });

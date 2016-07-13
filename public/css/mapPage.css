@@ -144,6 +144,10 @@
 	display: inline-block;
 }
 
+.x-flip {
+	transform: rotateY(180deg);
+}
+
 .glow {
 	text-align: center;
 	background: yellow;

@@ -142,7 +142,7 @@ app.directive('bsTooltip', function (){
         $('#nearbyRegion-modal').modal('hide');
         $('#distantRegion-modal').modal('hide');
         $('#travelInfo-modal').modal('hide');
-
+        $('#travel-modal').modal('hide');
 
     };
 
@@ -230,12 +230,13 @@ app.directive('bsTooltip', function (){
     /**** ------------ Char Creation END-------------- ***/
     /**** ------------ Char Manipulation START ------- ***/
 
-    /**
-    *   Locks a character into a traveling state
-    */
-    $scope.beginTraveling = function (){
 
-        api_service.beginTraveling($scope.email, $scope.selectedCharacter.id, $scope.selectedRegion)
+    /**
+    *   Locks a character into a traveling state going West to the destination
+    */
+    $scope.travel = function (direction){
+
+        api_service.travel($scope.email, $scope.selectedCharacter.id, $scope.selectedRegion, direction)
         .then(function (response){
             console.log("character traveling");
             console.log(response.data);
@@ -474,13 +475,9 @@ app.directive('bsTooltip', function (){
             //player wants to interact with their current location
             return "";
 
-        } else if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name === provinceList.provinceGivenLocation($scope.selectedRegion).name){
-            //player wants to interact with a region in the same province
-            return "#nearbyRegion-modal";
-        } else if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name === provinceList.provinceGivenLocation($scope.selectedRegion).name) {
-            //player wants to interact with a region in a different province
         } else {
-            return "#distantRegion-modal";
+            //player wants to interact with a distance location
+            return "#travel-modal";
         }
     };
 

@@ -105,13 +105,16 @@ app.post("/api/characters/spawnPlayerCharacter", function (req, res) {
     }
 });
 
-app.post("/api/characters/beginTraveling", function (req, res) {
+app.post("/api/characters/travel", function (req, res) {
     if (req.body.email) {
-        characters.beginTraveling(req.body.email, req.body.id, req.body.destination, res);
+        characters.travel(req.body.email, req.body.id, req.body.destination, req.body.direction, res);
     } else {
         res.status(400).send("Email is required");
     }
 });
+
+
+
 
 /********************** Characters *************************************/
 /********************* API v2 *************************/
