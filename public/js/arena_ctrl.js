@@ -314,6 +314,49 @@ app.directive('bsTooltip', function (){
     };
 
     /**
+    *   Title for the travelInfo-modal
+    */
+    $scope.travelInfoTitle = function (){
+        if (!$scope.selectedCharacter){
+            return "";
+        } else if (!$scope.selectedCharacter.location){
+            return "";
+        } else if ($scope.selectedRegion === $scope.selectedCharacter.location){
+            return "Leaving " + $scope.selectedCharacter.location.toTitleCase();
+        } else if ($scope.selectedRegion === $scope.selectedCharacter.destination){
+            return "Destination: " + $scope.selectedCharacter.destination.toTitleCase();
+        } else {
+            return "";
+        }
+    };
+
+    $scope.viewLeftSlot = function (location){
+        if (!$scope.selectedCharacter){
+            return false;
+
+        } else if ($scope.selectedCharacter.direction==='west' && location === $scope.selectedCharacter.location){
+            return true;
+        } else if ($scope.selectedCharacter.direction ==='east' && location === $scope.selectedCharacter.destination) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    $scope.viewRightSlot = function (location){
+        if (!$scope.selectedCharacter){
+            return false;
+
+        } else if ($scope.selectedCharacter.direction==='east' && location === $scope.selectedCharacter.location){
+            return true;
+        } else if ($scope.selectedCharacter.direction ==='west' && location === $scope.selectedCharacter.destination) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    /**
     *   Function for dynamic client side CSS only
     *   Shows which character is currently selected
     */
@@ -377,6 +420,8 @@ app.directive('bsTooltip', function (){
             return "";
         } else if ($scope.selectedCharacter.location === location && $scope.selectedCharacter.destination){
             return "fa fa-blind fa-3x glow";
+        } else if ($scope.selectedCharacter.destination === location){
+            return "fa fa-bullseye fa-3x glow";
         } else {
             return "";
         }
@@ -402,6 +447,14 @@ app.directive('bsTooltip', function (){
     *   their location to the selected region if traveling East
     */
     $scope.calculateEast = function (){
+        if (!$scope.selectedCharacter){
+            return false;
+        }
+
+        if (!$scope.selectedCharacter.location){
+            return false;
+        }
+
         var province_distance = 4; 
         var destination_indexes = provinceList.getIndexesFromLocation($scope.selectedRegion);
         var location_indexes = provinceList.getIndexesFromLocation($scope.selectedCharacter.location);
