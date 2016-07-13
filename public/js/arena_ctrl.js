@@ -261,13 +261,11 @@ app.directive('bsTooltip', function (){
             $scope.selectedCharacter = character;
             $scope.newCharFamilyName = character.family_name;
 
-
             // snap to character's location
-            if (!$scope.selectCharacter.location){
-                
-            } else if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name !== 
-                       provinceList.provinceGivenLocation($scope.selectedRegion).name){
-
+            if (provinceList.provinceGivenLocation($scope.selectedCharacter.location).name !== 
+                       provinceList.provinceGivenLocation($scope.selectedRegion).name
+                       && $scope.selectedCharacter.location){
+                console.log("inside");
                 $scope.selectProvince($scope.selectedCharacter.location);
                 $scope.viewRegionSlideStatus = "right";
                 $scope.characterSelectLock = "on";
