@@ -1,4 +1,6 @@
 "use strict";
+var utils = require("../utils.js");
+
 module.exports = function (knex) {
     return {
         createGameStateTable: function () {
@@ -81,6 +83,18 @@ module.exports = function (knex) {
                         table.boolean("capital"); 
                         table.integer("index");
                     });
+                }
+            });
+        },
+        /**
+        *   Populate the regions table
+        */
+        createRegions: function  () {
+            var regions = utils.provinces();
+            return knex("regions").select("*")
+            .then(function (rows) {
+                if (rows.length === 0) {
+                    return knex("regions").insert(regions);
                 }
             });
         },
