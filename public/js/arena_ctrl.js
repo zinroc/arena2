@@ -143,6 +143,7 @@ app.directive('bsTooltip', function (){
         $('#distantRegion-modal').modal('hide');
         $('#travelInfo-modal').modal('hide');
         $('#travel-modal').modal('hide');
+        $('#travelLock-modal').modal('hide');
 
     };
 
@@ -528,6 +529,9 @@ app.directive('bsTooltip', function (){
             //player wants to interact with their current location
             return "";
 
+        } else if ($scope.selectedCharacter.destination) {
+            return "#travelLock-modal";
+            //player wants to interact with a locatio while traveling
         } else {
             //player wants to interact with a distance location
             return "#travel-modal";

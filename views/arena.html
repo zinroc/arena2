@@ -98,6 +98,27 @@
 
 
             <!--- MODALS -->
+
+            <div id="travelLock-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center"> <span class="fa fa-blind fa-3x glow"></span>{{selectedCharacter.name.toTitlCase()}} {{selectedCharacter.family_name.toTitleCase()}} is currently traveling.</h3>
+                        </div>
+                        <div class="modal-body">
+                            Cannot interact with distance locations while traveling
+                            <br><br>
+                            Destination: {{selectedCharacter.destination.toTitleCase()}}<br> 
+                            Direction: {{selectedCharacter.direction.toTitleCase()}} <br>
+                            Success Bonus: +{{selectedCharacter.travel_progress}}<br>
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-primary" ng-click="hideModals()"> Cancel </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="travelInfo-modal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
