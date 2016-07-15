@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ArenaApp">
+    <head>
+        <title>Encounter</title>
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/topbar.css" />
+        <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+
+        <!--
+        <link rel="stylesheet" href="css/style.css" > 
+        <link rel="stylesheet" href="css/settings.css" />
+        <link rel="stylesheet" href="css/game.css" />
+        <link rel="stylesheet" href="css/match_calendar.css" />
+        <link rel="stylesheet" href="/css/fighters.css" />
+        -->
+    </head>
+    <body ng-controller="EncounterCtrl">
+        <!-- Top bar used for main navigation common to all -->
+        <div id="info-bar">
+            <div id="gold-container" class="stat-container">
+                <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
+                <span id="gold"> GoldGoesHere</span>
+            </div>
+
+            <div class="stat-container">
+                Day TimestepGoesHere
+            </div>
+
+            <div class="icon-container">
+                <span class="glyphicon glyphicon-cog" role="button" data-toggle="modal" data-target="#settings-modal">
+            </div>
+
+        </div>
+        Hello World
+        <div id="settings-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title">Settings</h3>
+                    </div>
+                    <div class="modal-body">
+                        <!--<p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/api_service.js"></script>
+
+    </body>
+</html>

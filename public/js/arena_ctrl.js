@@ -47,6 +47,24 @@ app.directive('bsTooltip', function (){
     /** Are you sure Toggles **/
     $scope.toggleTravelInfo = false;
 
+    /** ------------- Redirect START ------------- **/
+    /*
+    *   Redirect to encounter.html
+    */
+    $scope.redirectToEncounter = function (){
+        console.log("redirect To Encounter");
+            //var profile = googleUser.getBasicProfile();
+            //var data = { name: profile.getName(), email: profile.getEmail() };
+            // create a cookie
+            //document.cookie="name=" + data.name;
+            //document.cookie="email=" + data.email;
+            // redirect to main game
+            window.location.href = "/encounter";
+
+    };
+
+    /** ------------- Redirect End ------------- **/
+
     /** ------------- Loading START ------------- **/
     /**
      * Load player Info

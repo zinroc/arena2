@@ -29,6 +29,10 @@ app.get("/login", showLoginScreen);
 app.get("/game", function (req, res) {
     res.sendFile(__dirname + "/views/arena.html");
 });
+
+app.get("/encounter", function (req, res){
+    res.sendFile(__dirname + "/views/encounter.html")
+});
 /********************** Views *************************************/
 
 /********************** Players *************************************/
