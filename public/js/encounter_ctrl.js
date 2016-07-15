@@ -24,11 +24,11 @@ app.directive('bsTooltip', function (){
     console.log($scope.email, $scope.name);
 
     /** Mock values START**/
-    $scope.playerCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: '4'}, {s: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "K"}];
+    $scope.playerCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: 'Q'}, {suit: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "Q"}];
     $scope.tableCards =[{suit: 'c', suit_symbol: '<font color="black">&clubs;</font>', value: '10'}, {suit: 'h', suit_symbol: '<font color="red">&hearts;</font>', value: 'A'}, 
                         {suit: 'h', suit_symbol: '<font color="red">&hearts;</font>', value: '2'}, {suit: 'd', suit_symbol: '<font color="red">&diams;</font>', value: '2'}, 
                         {suit: 'c', suit_symbol: '<font color="black">&clubs;</font>', value: '9'}];
-    $scope.opponentCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: 'Q'}, {s: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "Q"}];
+    $scope.opponentCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: 'K'}, {suit: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "4"}];
     /** Mock values END ***/
 
     /** Loading START ***/
@@ -49,10 +49,57 @@ app.directive('bsTooltip', function (){
     /** Loading END ***/
 
     /** Poker Math  START **/
+
+    $scope.getHand = function (twoCards, fiveCards){
+        var totalHand = [];
+        for (var i=0; i<twoCards.length; i++){
+            totalHand[i] = "";
+            totalHand[i] = twoCards[i].value + twoCards[i].suit;
+        }
+
+        for (i = 2; i<(fiveCards.length+2); i++){
+            totalHand[i] = "";
+            totalHand[i] = fiveCards[i-2].value + fiveCards[i-2].suit;
+        }
+
+        return totalHand;
+    };
+
     $scope.evaluateWinningHand = function(){
-        var hand = Hand.solve(['Ad', 'As', 'Jc', 'Th', '2d', 'Qs', 'Qd']);
-        console.log(hand.name); // Two Pair
-        console.log(hand.descr); // Two Pair, A's & Q's
+        
+        var playerHand = $scope.getHand($scope.playerCards, $scope.tableCards);
+        var opponentHand = $scope.getHand($scope.opponentCards, $scope.tableCards);
+
+        console.log(playerHand, opponentHand);
+
+        var hand1 = Hand.solve(playerHand);
+        var hand2 = Hand.solve(opponentHand);
+        var winner = Hand.winners([hand1, hand2]);
+
+        var winningFirstCard = winner[0].cards[0].value + winner[0].cards[0].suit;
+        console.log(winner, winner[0].descr, winningFirstCard, winner.length);
+
+        if (winner.length > 1) {
+            console.log('tie');
+        } else if(winningFirstCard === playerHand[0]){
+            console.log('player wins');
+        } else if (winningFirstCard === opponentHand[0]){
+            console.log("opponent wins");
+        } else {
+            console.log('error');
+        }
+        
+        /** Example Code START **/
+        // solveing 2 hands
+        //var hand1 = Hand.solve(['Ad', 'As', 'Jc', 'Th', '2d', '3c', 'Kd']);
+        //var hand2 = Hand.solve(['Ad', 'As', 'Jc', 'Th', '2d', 'Qs', 'Qd']);
+        //var winner = Hand.winners([hand1, hand2]); // hand2
+
+        //solveing 1 hand
+        //var hand = Hand.solve(['Ad', 'As', 'Jc', 'Th', '2d', 'Qs', 'Qd']);
+        //console.log(hand.name); // Two Pair
+        //console.log(hand.descr); // Two Pair, A's & Q's
+        /** Example Code END **/
     };
     /** Poker Math END **/
 
