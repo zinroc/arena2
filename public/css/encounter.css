@@ -1,33 +1,68 @@
 /* Character Portraits + Character Selection Bar START */
 #topCards {
     width: 500px; /*can be in percentage also.*/
-    height: 360px;
+    height: 260px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
-    border: orange thick solid;
-    background: lightyellow;
     text-align: center;
+    border: black solid thick;
 
 }
 
+#middleCards {
+	width: 1250px; /*can be in percentage also.*/
+    height: 260px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    border: black solid thick;
+}
+
+#bottomCards {
+	width: 500px; /*can be in percentage also.*/
+    height: 260px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    border: black solid thick;
+}
+
+
+.ng-cloak { 
+	display: none !important; 
+}
+
 .card{
-	width: 200px;
-	height: 333px;
+	width: 133px;
+	height: 222px;
 	display: inline-block;
 	border: thick black solid;
+	border-radius: 5px;
 	background: grey;
 	font-size: 40px;
 	position: relative;
+	margin-left: 20px;
+	text-align: left;
 
 }
 
 .topLeftCardCorner {
 	position: absolute;
-	left: 0px;
+	left: 5px;
 	top: -20px; 
 	display: inline-block;
-	border: black solid thick;
+}
+
+.bottomRightCardCorner {
+	position: absolute;
+	top: 145px; 
+	display: inline-block;
+	transform: rotateZ(180deg);
+	width: 100px;
+	left: 20px;
 }
 
 .cardSuit {

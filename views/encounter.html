@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/css/fighters.css" />
         -->
     </head>
-    <body ng-controller="EncounterCtrl">
+    <body ng-controller="EncounterCtrl" ng-cloak class="ng-cloak">
         <!-- Top bar used for main navigation common to all -->
         <div id="info-bar">
             <div id="gold-container" class="stat-container">
@@ -40,7 +40,30 @@
             <div id="topCards">
                 <div class="card" ng-repeat="card in playerCards"> <!-- can't do ng-repeat since ng-bind-html doesn't accept variables -->
                     <div class="topLeftCardCorner">
-                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit"></span>
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
+                    </div>
+                    <div class="bottomRightCardCorner">
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="middleCards">
+                <div class="card" ng-repeat="card in tableCards"> <!-- can't do ng-repeat since ng-bind-html doesn't accept variables -->
+                    <div class="topLeftCardCorner">
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
+                    </div>
+                    <div class="bottomRightCardCorner">
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="bottomCards">
+                <div class="card" ng-repeat="card in opponentCards"> <!-- can't do ng-repeat since ng-bind-html doesn't accept variables -->
+                    <div class="topLeftCardCorner">
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
+                    </div>
+                    <div class="bottomRightCardCorner">
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit_symbol"></span>
                     </div>
                 </div>
             </div>

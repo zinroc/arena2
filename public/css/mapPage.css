@@ -5,6 +5,10 @@
 
 }
 
+.ng-cloak {
+	display: none !important; 
+}
+
 .portraitList-container {
 	display: inline-block;
 }
