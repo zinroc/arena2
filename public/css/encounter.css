@@ -1,33 +1,54 @@
 /* Character Portraits + Character Selection Bar START */
 #topCards {
-    width: 500px; /*can be in percentage also.*/
-    height: 260px;
+    width: 333px; /*can be in percentage also.*/
+    height: 173px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
     text-align: center;
-    border: black solid thick;
 
 }
 
 #middleCards {
-	width: 1250px; /*can be in percentage also.*/
-    height: 260px;
+	width: 833px; /*can be in percentage also.*/
+    height: 173px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
     text-align: center;
-    border: black solid thick;
+}
+
+.dice{
+	position: relative;
+	display: inline-block;
+	top: -45px;
+	left: 30px;
+	text-align: left;
+}
+.dice .fa {
+	font-size: 70px;
+	cursor: pointer;
+
+}
+
+.dice_text{
+	position: relative;
+	left: 140px;
+	top: -100px;
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	cursor: pointer;
 }
 
 #bottomCards {
-	width: 500px; /*can be in percentage also.*/
-    height: 260px;
+	width: 333px; /*can be in percentage also.*/
+    height: 173px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
     text-align: center;
-    border: black solid thick;
 }
 
 
@@ -36,13 +57,13 @@
 }
 
 .card{
-	width: 133px;
-	height: 222px;
+	width: 89px;
+	height: 148px;
 	display: inline-block;
 	border: thick black solid;
 	border-radius: 5px;
 	background: grey;
-	font-size: 40px;
+	font-size: 27px;
 	position: relative;
 	margin-left: 20px;
 	text-align: left;
@@ -58,16 +79,16 @@
 
 .bottomRightCardCorner {
 	position: absolute;
-	top: 145px; 
+	top: 97px; 
 	display: inline-block;
 	transform: rotateZ(180deg);
-	width: 100px;
-	left: 20px;
+	width: 67px;
+	left: 11px;
 }
 
 .cardSuit {
 	top: 4px;
-	font-size: 60px;
+	font-size: 40px;
 	margin-left: -10px;
 	position: relative;
 }
