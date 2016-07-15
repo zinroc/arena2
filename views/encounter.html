@@ -38,9 +38,9 @@
 
         <div class="container-fluid">
             <div id="topCards">
-                <div class="card" ng-repeat ="card in playerCards">
+                <div class="card" ng-repeat="card in playerCards"> <!-- can't do ng-repeat since ng-bind-html doesn't accept variables -->
                     <div class="topLeftCardCorner">
-                        {{card.value}} <span class="cardSuit" ng-bind-html="cardOneHTML"></span>
+                        {{card.value}} <span class="cardSuit" ng-bind-html="card.suit"></span>
                     </div>
                 </div>
             </div>

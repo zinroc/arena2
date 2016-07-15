@@ -24,5 +24,12 @@ app.directive('bsTooltip', function (){
     console.log($scope.email, $scope.name);
     $scope.playerCards = [{suit: '&spades;', value: '4'}, {suit: '&diams;', value: "K"}];
 
-    $scope.cardOneHTML = $sce.trustAsHtml('&spades;');;
+    $scope.load = function(){
+        for(var i=0; i<$scope.playerCards.length; i++){
+            $scope.playerCards[i].suit = $sce.trustAsHtml($scope.playerCards[i].suit);
+        }
+    };
+
+    $scope.load();
+
 });
