@@ -1,0 +1,38 @@
+/* Character Portraits + Character Selection Bar START */
+#topCards {
+    width: 500px; /*can be in percentage also.*/
+    height: 360px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    border: orange thick solid;
+    background: lightyellow;
+    text-align: center;
+
+}
+
+.card{
+	width: 200px;
+	height: 333px;
+	display: inline-block;
+	border: thick black solid;
+	background: grey;
+	font-size: 40px;
+	position: relative;
+
+}
+
+.topLeftCardCorner {
+	position: absolute;
+	left: 0px;
+	top: -20px; 
+	display: inline-block;
+	border: black solid thick;
+}
+
+.cardSuit {
+	top: 4px;
+	font-size: 60px;
+	margin-left: -10px;
+	position: relative;
+}
