@@ -20,6 +20,10 @@ module.exports = {
             .then(schema.createCharactersTable)
             .then(schema.createRegionsTable)
             .then(schema.createRegions)
+            .then(schema.createEldersTable)
+            .then(schema.createElders)
+            .then(schema.createEncountersTable)
+            .then(schema.createEncounterCharactersTable)
         .error(function (e) {
             console.error("There was an error creating some tables");
             console.error(e);

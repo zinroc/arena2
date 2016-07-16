@@ -4,9 +4,9 @@ var utils = {};
 
 var nameList = require("./public/js/nameList.js");
 var provinceList = require("./public/js/provinceList.js");
+var poker = require("./poker.js");
 
 module.exports = utils = {
-
 
     newName: function () {
     
@@ -19,6 +19,10 @@ module.exports = utils = {
     */
    	provinces: function () {
    		return provinceList.regions();
-   	}
+   	}, 
+    getNineCards: function (){
+
+        return poker.getNineCards();
+    }
 
 };

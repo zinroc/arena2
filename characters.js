@@ -63,4 +63,11 @@ module.exports = characters = {
             response.json(result).end();
         });
     }, 
+    //called from client
+    encounter: function(email, id, response){
+        characterStore.generateEncounter(email, id)
+        .then(function (result){
+            response.json(result).end();
+        });
+    },
 };

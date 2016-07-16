@@ -48,6 +48,9 @@ app.factory("api_service", function api_service ($http) {
         return this.postJSON("/api/characters/travel", {email: email, id: id, destination: destination, direction});
     };
 
+    this.generateEncounter = function(email, char_id){
+        return this.postJSON("/api/characters/encounter", {email: email, id: char_id});
+    };
 
     return this;
 });

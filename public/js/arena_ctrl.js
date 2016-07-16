@@ -162,7 +162,7 @@ app.directive('bsTooltip', function (){
         $('#travelInfo-modal').modal('hide');
         $('#travel-modal').modal('hide');
         $('#travelLock-modal').modal('hide');
-
+        $('#currentLocation-modal').modal('hide');
     };
 
     /**
@@ -246,7 +246,21 @@ app.directive('bsTooltip', function (){
         });
     };
 
-    /**** ------------ Char Creation END-------------- ***/
+    /**** ------------ Char Creation/Destruction END-------------- ***/
+    /**** ------------ Encounter START   ------- ***/
+    /**
+    *   Create an encounter for the selected Character
+    */
+    $scope.generateEncounter = function (){
+        api_service.generateEncounter($scope.email, $scope.selectedCharacter.id)
+        .then(function (response){
+            console.log("encounter created");
+            console.log(response.data);
+            $scope.loadCharacterInfo();
+            // TODO toggle encounter lock upon encounter creation
+        });
+    };
+    /**** ------------ Encounter END ---------***/
     /**** ------------ Char Manipulation START ------- ***/
 
 
@@ -459,8 +473,8 @@ app.directive('bsTooltip', function (){
 
 
     /**** ------------ Char Manipulation END   ------- ***/
-    /**** ------------ Map Manipulation START ---------***/
-
+    
+    /**** ------------ Map Manipulation START   ------- ***/
     /**
     *   Calculate the minimum time it would take the selected character to travel from
     *   their location to the selected region if traveling East
@@ -545,7 +559,7 @@ app.directive('bsTooltip', function (){
             return "#spawnCharacter-modal";
         } else if ($scope.selectedCharacter.location === $scope.selectedRegion){
             //player wants to interact with their current location
-            return "";
+            return "#currentLocation-modal";
 
         } else if ($scope.selectedCharacter.destination) {
             return "#travelLock-modal";

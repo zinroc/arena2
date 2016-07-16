@@ -65,10 +65,39 @@ module.exports = function (knex) {
                         table.integer("travel_progress");
                         table.string("direction");
                         table.string("travel_success");
+                        table.integer("encounter").references("id").inTable("encounters");
+                        table.boolean("bot").defaultValue(false);
                     });
                 }
             });
         }, 
+        /**
+        * Create an elders table
+        */
+        createEldersTable: function (){
+            return knex.schema.hasTable("elders")
+            .then(function (exists){
+                if (!exists){
+                    return knex.schema.createTable("elders", function (table){
+                        table.increments("id");
+                        table.string("name");
+                        table.string("region");
+                    });
+                }
+            });
+        },
+        /**
+        * Populate the elders table
+        */
+        createElders: function (){
+            var elders = utils.elders();
+            return knex("elders").select("*")
+            .then(function (rows){
+                if (rows.length === 0){
+                    return.knex("elders").insert(elders);
+                }
+            });
+        },
         /**
         *   Create a regions table 
         */
@@ -95,6 +124,41 @@ module.exports = function (knex) {
             .then(function (rows) {
                 if (rows.length === 0) {
                     return knex("regions").insert(regions);
+                }
+            });
+        },
+        /**
+        *   Poker encounters
+        */
+        createEncountersTable: function (){
+            return knex.schema.hasTable("encounters")
+            .then(function (exists){
+                if(!exists){
+                    return knex.schema.createTable("encounters", function (table){
+                        table.increments("id");
+                        table.string("card_1");
+                        table.string("card_2");
+                        table.string("card_3");
+                        table.string("card_4");
+                        table.string("card_5");
+                    });
+                }
+            });
+        },
+        /**
+        *  Characters involved in poker encounters
+        */
+        createEncounterCharactersTable: function (){
+            return knex.schema.hasTable("encounter_characters")
+            .then(function (exists){
+                if (!exists){
+                    return knex.schema.createTable("encounter_characters", function (table){
+                        table.increments("id");
+                        table.integer("encounter").references("id").inTable("encounters");
+                        table.integer("character").references("id").inTable("characters");
+                        table.string("card_1");
+                        table.string("card_2"); 
+                    });
                 }
             });
         },

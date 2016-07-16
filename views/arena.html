@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="icon-container">
-                    <span class="glyphicon glyphicon-fire" role="button" ng-click="redirectToEncounter()"></span>
+                    <!--<span class="glyphicon glyphicon-fire" role="button" ng-click="redirectToEncounter()"></span> -->
                     <span ng-if="admin" class="glyphicon glyphicon-cog" role="button" data-toggle="modal" data-target="#settings-modal"></span>
                     
                 </div>
@@ -100,6 +100,24 @@
 
 
             <!--- MODALS -->
+            <div id="currentLocation-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title center"> Visiting {{selectedCharacter.location.toTitleCase()}}...</h3>
+                        </div>
+                        <div class="modal-body">
+                            You overhear someone in need of help! <br> 
+                            What would you like to do? 
+                        </div>
+                        <div class="modal-footer">
+                            <p class="btn btn-danger" ng-click="generateEncounter()"> Encounter! </p>
+                            <p class="btn btn-primary" ng-click="hideModals()"> Nothing </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div id="travelLock-modal" class="modal fade">
                 <div class="modal-dialog">
