@@ -40,12 +40,17 @@ app.directive('bsTooltip', function (){
     $scope.selectedProvince = null;
     $scope.selectedRegion = null; 
 
+    /** Enounters **/
+    $scope.elders = [];
+
     /** CSS animation parameters **/ 
     $scope.viewRegionSlideStatus = "off";
     $scope.characterSelectLock = "off";
+    $scope.loadingElders = false;
 
     /** Are you sure Toggles **/
     $scope.toggleTravelInfo = false;
+    //$scope.toggleElders = false;
 
     /** ------------- Redirect START ------------- **/
     /*
@@ -199,6 +204,15 @@ app.directive('bsTooltip', function (){
             $scope.load();
         });
     };
+
+    $scope.dropTables = function (){
+        api_service.dropTables($scope.email)
+        .then(function (response){
+            console.log("Tables Dropped");
+            console.log(response.data);
+
+        });
+    };
     /*** ------------- Dev Environemnt END------------ ***/ 
     /**** ------------ Char Creation/Destruction START-------------- ***/
 
@@ -251,14 +265,32 @@ app.directive('bsTooltip', function (){
     /**
     *   Create an encounter for the selected Character
     */
-    $scope.generateEncounter = function (){
-        api_service.generateEncounter($scope.email, $scope.selectedCharacter.id)
+
+    $scope.generateEncounter = function (elder_id){
+        api_service.generateEncounter($scope.email, $scope.selectedCharacter.id, elder_id, $scope.selectedRegion)
         .then(function (response){
             console.log("encounter created");
             console.log(response.data);
             $scope.loadCharacterInfo();
             // TODO toggle encounter lock upon encounter creation
         });
+    };
+
+    $scope.showElders = function () {
+        $scope.loadingElders = true;
+        $scope.toggleElders = true;
+        
+        
+        console.log($scope.email, $scope.selectedRegion);
+        api_service.loadElders($scope.email, $scope.selectedRegion)
+        .then(function (response){
+            console.log("elders loaded");
+            console.log(response.data);
+            $scope.elders = response.data;
+            $scope.loadingElders = false; 
+        })
+
+        
     };
     /**** ------------ Encounter END ---------***/
     /**** ------------ Char Manipulation START ------- ***/
@@ -473,7 +505,7 @@ app.directive('bsTooltip', function (){
 
 
     /**** ------------ Char Manipulation END   ------- ***/
-    
+
     /**** ------------ Map Manipulation START   ------- ***/
     /**
     *   Calculate the minimum time it would take the selected character to travel from
@@ -547,6 +579,7 @@ app.directive('bsTooltip', function (){
     $scope.selectLocation = function (location_name){
         $scope.selectedRegion = location_name;
         $scope.toggleTravelInfo = false;
+        $scope.toggleElders = false;
     };
 
     /**

@@ -31,8 +31,17 @@ module.exports = gameState = {
     advanceTimestep: function (email, response){
         gameStateStore.get()
         .then (function (gs){
-            advance_timestep.internalAdvanceTimestep(gs)
+            return advance_timestep.internalAdvanceTimestep(gs)
         }).then(function (result){
+            response.json(result).end();
+        });
+    }, 
+    /**
+    *
+    */
+    dropTables: function (email, response){
+        gameStateStore.dropTables(email)
+        .then(function (result){
             response.json(result).end();
         });
     }

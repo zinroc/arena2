@@ -3,6 +3,20 @@ var utils = require("../utils.js");
 
 module.exports = function (knex) {
     return {
+        createEncounterEldersTable: function (){
+            return knex.schema.hasTable("encounter_elders")
+            .then(function (exists){
+                if(!exists){
+                    return knex.schema.createTable("encounter_elders", function (table){
+                        table.increments("id");
+                        table.integer("encounter").references("id").inTable("encounters");
+                        table.integer("elder").references("id").inTable("elders");
+                        table.string("card_1");
+                        table.string("card_2");
+                    });
+                }
+            });
+        },
         createGameStateTable: function () {
             return knex.schema.hasTable("game_state")
             .then(function(exists) {
@@ -66,7 +80,6 @@ module.exports = function (knex) {
                         table.string("direction");
                         table.string("travel_success");
                         table.integer("encounter").references("id").inTable("encounters");
-                        table.boolean("bot").defaultValue(false);
                     });
                 }
             });
@@ -94,7 +107,7 @@ module.exports = function (knex) {
             return knex("elders").select("*")
             .then(function (rows){
                 if (rows.length === 0){
-                    return.knex("elders").insert(elders);
+                    return knex("elders").insert(elders);
                 }
             });
         },
@@ -141,6 +154,7 @@ module.exports = function (knex) {
                         table.string("card_3");
                         table.string("card_4");
                         table.string("card_5");
+                        table.integer("elder_id").references("id").inTable("elders");
                     });
                 }
             });

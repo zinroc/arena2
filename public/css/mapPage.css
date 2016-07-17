@@ -13,6 +13,19 @@
 	display: inline-block;
 }
 
+#eldersPanel {
+	height: 100px;
+	text-align: center;
+}
+
+#elders {
+	display: inline-block;
+	height: 30px;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+}
+
 .provinceArrows {
 	display: inline-block;
 	font-size: 30px;

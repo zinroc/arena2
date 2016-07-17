@@ -48,9 +48,19 @@ app.factory("api_service", function api_service ($http) {
         return this.postJSON("/api/characters/travel", {email: email, id: id, destination: destination, direction});
     };
 
-    this.generateEncounter = function(email, char_id){
-        return this.postJSON("/api/characters/encounter", {email: email, id: char_id});
+    this.generateEncounter = function(email, char_id, elder_id){
+        return this.postJSON("/api/characters/encounter", {email: email, id: char_id, elder: elder_id});
     };
+
+    this.dropTables = function(email){
+        return this.postJSON("/api/gameState/dropTables", {email: email});
+    };
+
+    this.loadElders = function(email, region){
+        return this.getJSON("/api/characters/elders", {email: email, region: region});
+    };
+
+
 
     return this;
 });

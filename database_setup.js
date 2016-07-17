@@ -17,13 +17,14 @@ module.exports = {
         return schema.createGameStateTable()
             .then(schema.createGameState)
             .then(schema.createPlayerTable)
-            .then(schema.createCharactersTable)
             .then(schema.createRegionsTable)
             .then(schema.createRegions)
             .then(schema.createEldersTable)
             .then(schema.createElders)
             .then(schema.createEncountersTable)
+            .then(schema.createCharactersTable)
             .then(schema.createEncounterCharactersTable)
+            .then(schema.createEncounterEldersTable)
         .error(function (e) {
             console.error("There was an error creating some tables");
             console.error(e);

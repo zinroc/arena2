@@ -57,6 +57,14 @@ app.post("/api/gameState/advanceTimestep", function (req, res) {
     }
 });
 
+app.post("/api/gameState/dropTables", function (req, res) {
+    if (req.body.email) {
+        gameState.dropTables(req.body.email, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
 app.get("/api/gameState/get", function (req, res) {
     if (req.query.email) {
         gameState.get(req.query.email, res);
@@ -64,6 +72,7 @@ app.get("/api/gameState/get", function (req, res) {
         res.status(400).send("Email is required");
     }
 });
+
 
 /********************** Game State *************************************/
 /********************** Characters *************************************/
@@ -80,6 +89,15 @@ app.get("/api/characters/getPlayerCharacters", function (req, res) {
     console.log(req.query.email);
     if(req.query.email){
         characters.getPlayerCharacters(req.query.email, res);
+    } else {
+        res.status(400).send("Email is required");  
+    }
+});
+
+app.get("/api/characters/elders", function (req, res) {
+    console.log(req.query.email);
+    if(req.query.email){
+        characters.elders(req.query.region, res);
     } else {
         res.status(400).send("Email is required");  
     }
@@ -119,11 +137,12 @@ app.post("/api/characters/travel", function (req, res) {
 
 app.post("/api/characters/encounter", function (req, res){
     if (req.body.email){
-        characters.encounter(req.body.email, req.body.id, res);
+        characters.encounter(req.body.email, req.body.id, req.body.elder, res);
     } else {
         res.status(400).send("Email is required");
     }
 });
+
 
 
 

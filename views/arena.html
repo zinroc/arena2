@@ -108,12 +108,18 @@
                             <h3 class="modal-title center"> Visiting {{selectedCharacter.location.toTitleCase()}}...</h3>
                         </div>
                         <div class="modal-body">
-                            You overhear someone in need of help! <br> 
                             What would you like to do? 
                         </div>
                         <div class="modal-footer">
-                            <p class="btn btn-danger" ng-click="generateEncounter()"> Encounter! </p>
+                            <p class="btn btn-danger" ng-click="showElders()"> Talk to an Elder </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Nothing </p>
+                        </div>
+                        <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
+                            <span ng-if="loadingElders" class="fa fa-spinner fa-spin fa-4x"></span>
+                            <span ng-if="!loadingElders"> Encounter: <br></span>
+                            <div id="elders" ng-if="!loadingElders" class="btn btn-danger" ng-repeat="elder in elders" ng-click="generateEncounter(elder.id)">
+                                 {{elder.name.toTitleCase()}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -247,6 +253,8 @@
                         </div>
                         <div class="modal-body">
                             <p class="btn btn-primary" ng-click="advanceTimestep()"> Advance Timestep</p>
+                            <p class="btn btn-danger" ng-click="dropTables()"> DropTables</p>
+
                         </div>
                     </div>
                 </div>

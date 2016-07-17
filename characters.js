@@ -21,6 +21,13 @@ var utils = require("./utils.js");
 var popCap = 1000;
 
 module.exports = characters = {
+
+    elders: function (region, response) {
+        characterStore.getElders(region)
+        .then(function (rows){
+            response.json(rows).end();
+        });
+    },
     //not called atm
     get: function (email, response) {
         characterStore.get()
@@ -64,8 +71,8 @@ module.exports = characters = {
         });
     }, 
     //called from client
-    encounter: function(email, id, response){
-        characterStore.generateEncounter(email, id)
+    encounter: function(email, id, elder, response){
+        characterStore.generateEncounter(email, id, elder)
         .then(function (result){
             response.json(result).end();
         });
