@@ -153,6 +153,10 @@
 
 /* Main Map Page START */
 
+.red {
+	color: red;
+}
+
 .top{
 	z-index: 100;
 }

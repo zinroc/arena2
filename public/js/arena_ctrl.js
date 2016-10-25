@@ -42,6 +42,7 @@ app.directive('bsTooltip', function (){
 
     /** Enounters **/
     $scope.elders = [];
+    $scope.currentEncounter = false;
 
     /** CSS animation parameters **/ 
     $scope.viewRegionSlideStatus = "off";
@@ -266,12 +267,25 @@ app.directive('bsTooltip', function (){
     *   Create an encounter for the selected Character
     */
 
+    $scope.loadEncounterInfo = function () {
+        api_service.loadEncounterInfo($scope.email, $scope.currentEncounter)
+        .then(function (response){
+            console.log("encounter loaded");
+            console.log(response.data);
+            $scope.encounterInfo = response.data;
+        });
+    }; 
+
     $scope.generateEncounter = function (elder_id){
         api_service.generateEncounter($scope.email, $scope.selectedCharacter.id, elder_id, $scope.selectedRegion)
         .then(function (response){
             console.log("encounter created");
             console.log(response.data);
             $scope.loadCharacterInfo();
+            $scope.currentEncounter = $scope.selectedCharacter.encounter;
+            if ($scope.currentEncounter){
+                $scope.loadEncounterInfo();
+            }
             // TODO toggle encounter lock upon encounter creation
         });
     };
@@ -597,6 +611,10 @@ app.directive('bsTooltip', function (){
         } else if ($scope.selectedCharacter.destination) {
             return "#travelLock-modal";
             //player wants to interact with a locatio while traveling
+
+        } else if ($scope.selectedCharacter.encounter) {
+            return "#encounterLock-modal";
+            //player trying to interact with a location while in an encounter
         } else {
             //player wants to interact with a distance location
             return "#travel-modal";

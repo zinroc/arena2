@@ -28,6 +28,12 @@ module.exports = characters = {
             response.json(rows).end();
         });
     },
+    encounters: function (email, encounter, response) {
+        characterStore.getEncounterInfo(email, encounter)
+        .then(function (rows){
+            response.json(rows).end();
+        });
+    },
     //not called atm
     get: function (email, response) {
         characterStore.get()

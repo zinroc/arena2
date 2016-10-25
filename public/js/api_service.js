@@ -60,6 +60,10 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/elders", {email: email, region: region});
     };
 
+    this.loadEncounterInfo = function(email, encounter){
+        return this.getJSON("/api/characters/encounters", {email: email, encounter: encounter});
+    };
+
 
 
     return this;
