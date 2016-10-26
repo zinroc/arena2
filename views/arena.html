@@ -82,6 +82,9 @@
                             <div ng-if="viewLeftSlot(selectedProvince.capital)" class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer x-flip" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
                             <div id="capital" class="{{viewRegionFlicker()}} {{viewCharacterPresent(selectedProvince.capital)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(selectedProvince.capital)">
                                 <span class="glyphicon glyphicon-home" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{selectedProvince.capital.toTitleCase()}}"></span>
+                                <span ng-if="selectedCharacter.encounter && region === selectedRegion"  class="badge redBackground toplayer">
+                                    <i class="fa fa-superpowers fa-spin" aria-hidden="true"></i>
+                                </span>
                             </div>
                             <div ng-if="viewRightSlot(selectedProvince.capital)" class="{{viewCharacterTraveling(selectedProvince.capital)}} top inline pointer" ng-click="selectLocation(selectedProvince.capital)" data-toggle="modal" data-target="#travelInfo-modal"></div>
                         </div>
@@ -91,6 +94,9 @@
                             </div>
                             <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(region)">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{region.toTitleCase()}}"></span>
+                                <span ng-if="selectedCharacter.encounter && region === selectedRegion" class="badge redBackground toplayer">
+                                    <i class="fa fa-superpowers fa-spin" aria-hidden="true"></i>
+                                </span>
                             </div>
                             <div ng-if="viewRightSlot(region)" class="{{viewCharacterTraveling(region)}} top inline pointer" ng-click="selectLocation(region)" data-toggle="modal" data-target="#travelInfo-modal">
                             </div>

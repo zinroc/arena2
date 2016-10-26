@@ -26,6 +26,15 @@
 	margin: 5px;
 }
 
+.redBackground {
+	background: red;
+}
+
+.toplayer {
+	position: relative;
+	z-index: 1000;
+}
+
 .provinceArrows {
 	display: inline-block;
 	font-size: 30px;
