@@ -178,11 +178,14 @@
 	transform: rotateY(180deg);
 }
 
-.glow {
+.pointer {
+	cursor: pointer;
+}
+
+.redglow {
 	text-align: center;
-	background: yellow;
+	background: red;
 	border-radius: 35%;
-	border-bottom: black thick solid;
 }
 
 #worldMap-container {

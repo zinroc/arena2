@@ -268,6 +268,7 @@ app.directive('bsTooltip', function (){
     };
 
     $scope.deleteCharacter = function (){
+        console.log("deleting character...");
         api_service.deleteCharacter($scope.email, $scope.selectedCharacter.id)
         .then(function (response){
             console.log("character deleted");
@@ -621,17 +622,18 @@ app.directive('bsTooltip', function (){
             return "";
         }  else if (!$scope.selectedCharacter.location){
             return "#spawnCharacter-modal";
+        } else if ($scope.selectedCharacter.location === $scope.selectedRegion && $scope.selectedCharacter.encounter) {
+            //player wants to experience an encounter at their current location
+            return "#encounter-modal";
         } else if ($scope.selectedCharacter.location === $scope.selectedRegion){
             //player wants to interact with their current location
             return "#currentLocation-modal";
-
         } else if ($scope.selectedCharacter.destination) {
-            return "#travelLock-modal";
             //player wants to interact with a locatio while traveling
-
+            return "#travelLock-modal";
         } else if ($scope.selectedCharacter.encounter) {
-            return "#encounterLock-modal";
             //player trying to interact with a location while in an encounter
+            return "#encounterLock-modal";
         } else {
             //player wants to interact with a distance location
             return "#travel-modal";
