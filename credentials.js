@@ -2,6 +2,10 @@ module.exports = {
 //localhost
 //	PG_CON_STRING: "://admin2:@localhost"
 
+//emergence
+	PG_CON_STRING: "postgres://cosyudldjdolpk:Z0qqJa7gymZliw2sf3Jdpp4Z34@ec2-54-235-95-188.compute-1.amazonaws.com:5432/d9fgvijtf72tl2"
+
+
 //arena-of-fate
 //	PG_CON_STRING: "postgres://mkdznpczpjujqw:-eXeolCCi7EyTXW-eeRPJt5ozh@ec2-54-83-46-91.compute-1.amazonaws.com:5432/d7d3kbhheh5023"
 
@@ -11,7 +15,5 @@ module.exports = {
 
 //titan
 //	PG_CON_STRING: "postgres://sgaoombqeqmzjx:DyJGGHgSjqWTINH4JZVhgGAVY1@ec2-54-243-125-46.compute-1.amazonaws.com:5432/d8472bf2tbc91f&ssl=true"
-//emergence
-	PG_CON_STRING: "postgres://cosyudldjdolpk:Z0qqJa7gymZliw2sf3Jdpp4Z34@ec2-54-235-95-188.compute-1.amazonaws.com:5432/d9fgvijtf72tl2"
 
 };
