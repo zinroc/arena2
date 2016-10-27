@@ -94,7 +94,7 @@
                             </div>
                             <div id="region" class="{{viewRegionFlicker()}} {{viewCharacterPresent(region)}} inline" data-toggle="modal" data-target="{{locationModalTrigger()}}" ng-click="selectLocation(region)">
                                 <span class="glyphicon glyphicon-tent" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{region.toTitleCase()}}"></span>
-                                <span ng-if="selectedCharacter.encounter && region === selectedRegion" class="badge redBackground toplayer">
+                                <span ng-if="selectedCharacter.encounter && region === selectedCharacter.location" class="badge redBackground toplayer">
                                     <i class="fa fa-superpowers fa-spin" aria-hidden="true"></i>
                                 </span>
                             </div>
