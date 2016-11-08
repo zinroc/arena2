@@ -85,6 +85,20 @@ module.exports = function (knex) {
             });
         }, 
         /**
+        * Create Minor Factions table
+        */
+        createMinorFactionsTable: function (){
+            return knex.schema.hasTable("minor_factions")
+            .then(function (exists){
+                if (!exists){
+                    return knex.schema.createTable("minor_factions", function (table) {
+                        table.increments("id");
+                        table.string("name");  
+                    });
+                }
+            });
+        },
+        /**
         * Create an elders table
         */
         createEldersTable: function (){

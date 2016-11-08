@@ -86,6 +86,10 @@ app.directive('bsTooltip', function (){
         window.location.href= "https://accounts.google.com/logout";
     };
 
+    $scope.enterEncounter = function (){
+        console.log("entering encounter...", $scope.email, $scope.selectedCharacter.id);
+    };
+
     /** ------------- Redirect End ------------- **/
 
     /** ------------- Loading START ------------- **/

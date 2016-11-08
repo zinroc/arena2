@@ -19,6 +19,7 @@ module.exports = {
             .then(schema.createPlayerTable)
             .then(schema.createRegionsTable)
             .then(schema.createRegions)
+            .then(schema.createMinorFactionsTable)
             .then(schema.createEldersTable)
             .then(schema.createElders)
             .then(schema.createEncountersTable)
