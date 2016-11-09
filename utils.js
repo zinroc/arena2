@@ -56,7 +56,7 @@ module.exports = utils = {
     *   Get Minor Factions
     */
     minor_factions: function () {
-        var minor_factions = [];
+        return minorFactionList.getAllMinorFactions();
     },
     /**
     *   ARRAY of STRINGS names - names that the new name cannot be the same as.

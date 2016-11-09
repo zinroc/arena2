@@ -98,12 +98,12 @@ module.exports = function (knex) {
                 }
             });
         },
-        createMinorFaction: function () {
+        createMinorFactions: function () {
             var minor_factions = utils.minor_factions();
             return knex("minor_factions").select("*")
             .then(function (rows){
                 if (rows.length === 0){
-                    return knex("elders").insert(minor_factions);
+                    return knex("minor_factions").insert(minor_factions);
                 }
             });
         },

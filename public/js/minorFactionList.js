@@ -17,6 +17,9 @@ var minorFactionList = {
     getMinorFaction: function (index){
         return minorFactions[index];
     },
+    getAllMinorFactions: function (){
+    	return minorFactions;
+    },
 }
 
 /**
@@ -26,5 +29,8 @@ var minorFactionList = {
 module.exports = nameList = {
 	getMinorFaction: function (index){
         return minorFactions[index];
+	},
+	getAllMinorFactions: function (){
+		return minorFactions;
 	},
 };
