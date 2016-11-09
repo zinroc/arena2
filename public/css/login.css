@@ -17,8 +17,9 @@ html, body {
     margin: 1em auto;
     border-radius: 5px;
     position: relative;
-    background: #d98cb3;
+    background: linear-gradient(-40deg, blue, lightblue);
 }
+
 
 label {
     display: block;
@@ -33,6 +34,11 @@ button[type=submit] {
 #login-instructions {
     margin-bottom: 1em;
     text-align: center;
+}
+
+
+.h1 {
+    color: white;
 }
 
 .vertical_spacer_1 {

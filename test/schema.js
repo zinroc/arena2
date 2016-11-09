@@ -98,6 +98,15 @@ module.exports = function (knex) {
                 }
             });
         },
+        createMinorFaction: function () {
+            var minor_factions = utils.minor_factions();
+            return knex("minor_factions").select("*")
+            .then(function (rows){
+                if (rows.length === 0){
+                    return knex("elders").insert(minor_factions);
+                }
+            });
+        },
         /**
         * Create an elders table
         */
@@ -109,6 +118,7 @@ module.exports = function (knex) {
                         table.increments("id");
                         table.string("name");
                         table.string("region");
+                        table.string("minor_faction");
                     });
                 }
             });

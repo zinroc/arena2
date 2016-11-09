@@ -3,6 +3,7 @@
 var utils = {};
 
 var nameList = require("./public/js/nameList.js");
+var minorFactionList = require("./public/js/minorFactionList.js");
 var provinceList = require("./public/js/provinceList.js");
 var poker = require("./poker.js");
 
@@ -36,16 +37,26 @@ module.exports = utils = {
             var region = regions[i];
             var names = [];
             var elder = [];
+            var minor_factions = [];
             for (var j=0; j<3; j++){
 
                 names[j] = this.uniqueNewName(names);
+                minor_factions[j] = this.minor_faction();
+                //console.log(minor_factions[j]);
                 elder[j] = {};
                 elder[j].name = names[j];
                 elder[j].region = region.name;
+                elder[j].minor_faction = minor_factions[j].name;
                 elders.push(elder[j]);
             }
         }
         return elders;
+    },
+    /**
+    *   Get Minor Factions
+    */
+    minor_factions: function () {
+        var minor_factions = [];
     },
     /**
     *   ARRAY of STRINGS names - names that the new name cannot be the same as.
@@ -58,6 +69,14 @@ module.exports = utils = {
             } 
         }
         return name;
+    },
+    /**
+    *   Get a minor faction name
+    */
+    minor_faction: function () {
+        //4 is the number of minor factions
+        var index = Math.floor(Math.random()*4);
+        return minorFactionList.getMinorFaction(index);
     },
     getNineCards: function (){
 
