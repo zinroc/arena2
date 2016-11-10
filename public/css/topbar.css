@@ -10,6 +10,26 @@
     justify-content: space-around;
 }
 
+.yellow {
+    color: yellow;
+}
+
+.indigo {
+    color: #c988ef;
+}
+
+.grey {
+    color: lightgrey;
+}
+
+.red {
+    color: red;
+}
+
+.currency_value {
+    padding-right: 5px;
+}
+
 #info-bar {
     font-size: 1.3em;
     border-bottom: 1px solid black;

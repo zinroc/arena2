@@ -24,10 +24,19 @@
         <div ng-if="checkLoad()">
             <!-- Top bar used for main navigation common to all -->
             <div id="info-bar">
-                <div id="gold-container" class="stat-container">
-                    <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>
-                    <span id="gold"> GoldGoesHere</span>
+                <div class="stat-container">
+                    <!-- <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>-->
+                    <span class="fa fa-circle yellow gold " bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Gold"></span>
+                    <span class="currency_value"> 100</span>
+                    <span class="fa fa-star indigo" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Renown"></span>
+                    <span class="currency_value"> 10</span>
+                    <span class="fa fa-eye-slash grey" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Stealth"></span>
+                    <span class="currency_value"> 10</span>
+                    <span class="fa fa-bolt red" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Combat"></span>
+                    <span class="currency_value"> 1 / 1</span>
+
                 </div>
+
 
                 <div class="stat-container">
                     Day {{ timestep }}
@@ -114,32 +123,43 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h3 class="modal-title center"> Visiting {{selectedCharacter.location.toTitleCase()}}...</h3>
                         </div>
-                        <div class="modal-body">
-                            <h6> Population: 1000 followers </h6>
-                            <h6> Wealth: 5543 gold <br> </h6>
-                            <h6> Culture: Spores </h6>
-                            ----------------
-                            <h6> Favor: 32 approval tokens</h6>
+                        <div class="modal-body locationBox">
+                            <div id="locationInfo">
+                                <h6> Culture: Spores </h6>
+                                <h6> Population: 1000 followers </h6>
+                                <h6> Wealth: 5543 gold <br> </h6>
+                                <h6> Security: 300 </h6> 
+                            </div>
+                            <div id="questInfo">
+                                <h4> Quest </h4>
+                            </div>
+                            <div>
+                                What would you like to do? 
+                            </div>
 
-                            What would you like to do? 
                         </div>
                         <div class="modal-footer">
+                            <p class="btn btn-warning" ng-click="showElders()"> Trade </p>
+                            <p class="btn btn-purple" ng-click="showElders()"> Diplomacy </p>
+                            <p class="btn btn-black" ng-click="showElders()"> Infiltrate </p>
                             <p class="btn btn-danger" ng-click="showElders()"> Attack </p>
-                            <p class="btn btn-black" ng-click="showElders()"> Recruit </p>
-                            <p class="btn btn-success" ng-click="showElders()"> Gain Favor </p>
-                            <p class="btn btn-warning" ng-click="showElders()"> Bribe </p>
-                            <p class="btn btn-purple" ng-click="showElders()"> Politics </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Nothing </p>
                         </div>
                         <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
                             <span ng-if="loadingElders" class="fa fa-spinner fa-spin fa-4x"></span>
-                            <span ng-if="!loadingElders" class="elder_name_container"> <h4>Agents from Minor Factions </h4></span>
+                            <span ng-if="!loadingElders" class="elder_name_container"> <h4>Leaders </h4></span>
                             <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
                                 </span>
-                                {{elder.name}}
+                                {{elder.name}} 
+                                <!--
+                                <div id="elderInfo">
+                                    Power: 54 <span class="fa fa-hand-grab-o"> </span>
+                                    Followers: 9 <span class="fa fa-user"> </span>
+                                    Honor: 23 <span class="fa fa-gavel"> </span>
+                                </div>-->
                             </div>
 
                             <!--
