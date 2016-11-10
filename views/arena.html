@@ -115,19 +115,44 @@
                             <h3 class="modal-title center"> Visiting {{selectedCharacter.location.toTitleCase()}}...</h3>
                         </div>
                         <div class="modal-body">
+                            <h6> Population: 1000 followers </h6>
+                            <h6> Wealth: 5543 gold <br> </h6>
+                            <h6> Culture: Spores </h6>
+                            ----------------
+                            <h6> Favor: 32 approval tokens</h6>
+
                             What would you like to do? 
                         </div>
                         <div class="modal-footer">
-                            <p class="btn btn-danger" ng-click="showElders()"> Talk to an Elder </p>
+                            <p class="btn btn-danger" ng-click="showElders()"> Attack </p>
+                            <p class="btn btn-black" ng-click="showElders()"> Recruit </p>
+                            <p class="btn btn-success" ng-click="showElders()"> Gain Favor </p>
+                            <p class="btn btn-warning" ng-click="showElders()"> Bribe </p>
+                            <p class="btn btn-purple" ng-click="showElders()"> Politics </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Nothing </p>
                         </div>
                         <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
                             <span ng-if="loadingElders" class="fa fa-spinner fa-spin fa-4x"></span>
-                            <span ng-if="!loadingElders"> Encounter: <br></span>
+                            <span ng-if="!loadingElders" class="elder_name_container"> <h4>Agents from Minor Factions </h4></span>
+                            <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
+                                </span>
+                                {{elder.name}}
+                            </div>
+
+                            <!--
                             <div id="elders" ng-if="!loadingElders" class="btn btn-danger" ng-repeat="elder in elders" ng-click="generateEncounter(elder.id)">
                                  {{elder.name.toTitleCase()}}
                             </div>
+                            -->
                         </div>
+                        <div ng-if="proposedEncounter" class="encounterConfirmation modal-body">
+                            <span class="fa-stack fa-3x">
+                                <i class="fa fa-square fa-stack-2x"></i>
+                                <i class="fa {{minor_faction_objects[proposedEncounter.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
+                            </span>                        </div>
                         <div class="modal-footer" ng-if="newEncounter">
 
                         </div>
@@ -313,9 +338,9 @@
         <script src="js/utils.js"></script>
         <script src="js/arena.js"></script>
         <script src="js/api_service.js"></script>
-        <script src="js/arena_ctrl.js"></script>
         <script src="js/nameList.js"></script>
         <script src="js/provinceList.js"></script>
-
+        <script src="js/minorFactionList.js"></script>
+        <script src="js/arena_ctrl.js"></script>
     </body>
 </html>

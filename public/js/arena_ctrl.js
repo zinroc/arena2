@@ -43,6 +43,9 @@ app.directive('bsTooltip', function (){
     /** Enounters **/
     $scope.elders = [];
     $scope.currentEncounter = false;
+    $scope.minor_factions = [];
+    $scope.minor_faction_objects = {};
+    $scope.encounterProposal = false;
 
     /** CSS animation parameters **/ 
     $scope.viewRegionSlideStatus = "off";
@@ -93,6 +96,9 @@ app.directive('bsTooltip', function (){
     /** ------------- Redirect End ------------- **/
 
     /** ------------- Loading START ------------- **/
+
+
+
     /**
      * Load player Info
      * If player does not yet exist, write into db
@@ -163,6 +169,7 @@ app.directive('bsTooltip', function (){
         $scope.loadPlayerInfo();
         $scope.loadGameState();
         $scope.loadCharacterInfo();
+        $scope.loadMinorFactions();
     };
 
     $scope.checkLoad = function (){
@@ -173,6 +180,16 @@ app.directive('bsTooltip', function (){
             }
         }
         return true;
+    };
+
+    /**
+    * Load minor faction static info
+    */
+    $scope.loadMinorFactions = function () {
+        $scope.minor_factions = utils.getMinorFactions();
+        for (var i=0; i<$scope.minor_factions.length; i++){
+            $scope.minor_faction_objects[$scope.minor_factions[i].name] = $scope.minor_factions[i];
+        }
     };
 
     /*** ---------- Loading END ------------ ***/
@@ -254,6 +271,8 @@ app.directive('bsTooltip', function (){
         }
     }; 
 
+
+
     $scope.setCharNames = function (){
         $scope.setCharName();
         $scope.setCharFamilyName();
@@ -328,6 +347,15 @@ app.directive('bsTooltip', function (){
 
         
     };
+
+    /**
+    *   Select the object that has information about the proposed encounter. 
+    */
+    $scope.proposeEncounter = function (elder){
+        $scope.proposedEncounter = elder;
+    };
+
+
     /**** ------------ Encounter END ---------***/
     /**** ------------ Char Manipulation START ------- ***/
 
@@ -616,6 +644,7 @@ app.directive('bsTooltip', function (){
         $scope.selectedRegion = location_name;
         $scope.toggleTravelInfo = false;
         $scope.toggleElders = false;
+        $scope.proposedEncounter = null;
     };
 
     /**

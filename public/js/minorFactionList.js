@@ -3,10 +3,10 @@ var numMinorFactions = 4;
 
 var minorFactions = Array([numMinorFactions]);
 
-minorFactions[0] = {name:'golems'}; // dwarves
-minorFactions[1] = {name: 'spores'}; //orcs
-minorFactions[2] = {name: 'leeches'}; // necrophages
-minorFactions[3] = {name: 'shades'}; // forgotten
+minorFactions[0] = {name:'golems', icon: 'fa-diamond'}; // dwarves
+minorFactions[1] = {name: 'spores', icon: 'fa-leaf'}; //orcs
+minorFactions[2] = {name: 'jackals', icon: 'fa-paw'}; // necrophages
+minorFactions[3] = {name: 'shades', icon: 'fa-moon-o'}; // forgotten
 
 /**
  * Use these function to navigate static name data inside client-side code

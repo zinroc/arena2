@@ -12,6 +12,9 @@ var utils = {
     provinceGivenLocation: function (location){
         return provinceList.provinceGivenLocation(location);
     },
+    getMinorFactions: function () {
+        return minorFactionList.getAllMinorFactions();
+    },
     randomItem: function (collection) {
         var idx = Math.floor(collection.length * Math.random());
         return collection[idx];

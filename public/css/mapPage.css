@@ -14,16 +14,26 @@
 }
 
 #eldersPanel {
-	height: 100px;
-	text-align: center;
+	height: 150px;
+	text-align: left;
 }
 
 #elders {
 	display: inline-block;
-	height: 30px;
-	text-align: center;
+	height: 50px;
+	text-align: left;
 	padding: 5px;
 	margin: 5px;
+	width: 165px;
+	cursor: pointer;
+	background: linear-gradient(-40deg, white, grey);
+	border: 15%;
+	border-right: black thin solid;
+	border-bottom: black thin solid;
+}
+
+#elders:hover{
+	background: linear-gradient(-40deg, white, lightgrey);
 }
 
 .redBackground {
@@ -264,8 +274,27 @@
 	background: yellow;
 }
 
+.btn-black {
+	background: lightgrey;
+}
+
+.btn-black:hover {
+	background: grey;
+	color: white;
+}
+
 .btn-purple {
 	background: orchid;
+}
+
+.btn-purple:hover {
+	background: purple;
+	color: white;
+}
+
+.encounterConfirmation {
+	height: 125px;
+	border: black solid thin;
 }
 
 @keyframes fadeLeft {
