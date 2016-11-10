@@ -47,6 +47,11 @@ module.exports = utils = {
                 elder[j].name = names[j];
                 elder[j].region = region.name;
                 elder[j].minor_faction = minor_factions[j].name;
+                if (j === 0) {
+                    elder[j].mayor = true;
+                } else {
+                    elder[j].mayor = false;
+                }
                 elders.push(elder[j]);
             }
         }

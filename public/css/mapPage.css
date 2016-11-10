@@ -55,9 +55,12 @@
 	width: 165px;
 	cursor: pointer;
 	background: linear-gradient(-40deg, white, grey);
-	border: 15%;
 	border-right: black thin solid;
 	border-bottom: black thin solid;
+}
+
+.mayor {
+	outline: gold solid thick;
 }
 
 #elders:hover{

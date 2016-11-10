@@ -148,7 +148,7 @@
                         <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
                             <span ng-if="loadingElders" class="fa fa-spinner fa-spin fa-4x"></span>
                             <span ng-if="!loadingElders" class="elder_name_container"> <h4>Leaders </h4></span>
-                            <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)">
+                            <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)" class="{{isMayor(elder.mayor)}}">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>

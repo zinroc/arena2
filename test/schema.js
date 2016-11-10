@@ -120,6 +120,7 @@ module.exports = function (knex) {
                         table.string("name");
                         table.string("region");
                         table.string("minor_faction");
+                        table.boolean("mayor");
                     });
                 }
             });

@@ -304,6 +304,18 @@ app.directive('bsTooltip', function (){
 
     /**** ------------ Char Creation/Destruction END-------------- ***/
     /**** ------------ Encounter START   ------- ***/
+
+    /**
+    *   For class HTML around elder who is mayor.
+    */
+    $scope.isMayor = function (mayor) {
+        if (mayor){
+            return 'mayor';
+        } else {
+            return '';
+        }
+    };
+
     /**
     *   Create an encounter for the selected Character
     */
