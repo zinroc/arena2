@@ -139,10 +139,10 @@
 
                         </div>
                         <div class="modal-footer">
-                            <p class="btn btn-warning" ng-click="showElders()"> Bribe </p>
-                            <p class="btn btn-purple" ng-click="showElders()"> Diplomacy </p>
-                            <p class="btn btn-black" ng-click="showElders()"> Infiltrate </p>
-                            <p class="btn btn-danger" ng-click="showElders()"> Attack </p>
+                            <p class="btn btn-warning" ng-click="showElders('bribe')"> Bribe </p>
+                            <p class="btn btn-purple" ng-click="showElders('diplomacy')"> Diplomacy </p>
+                            <p class="btn btn-black" ng-click="showElders('infiltrate')"> Infiltrate </p>
+                            <p class="btn btn-danger" ng-click="showElders('attack')"> Attack </p>
                             <p class="btn btn-primary" ng-click="hideModals()"> Nothing </p>
                         </div>
                         <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
@@ -153,7 +153,7 @@
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
                                 </span>
-                                {{isMayor(elder.mayor).toTitleCase()}} {{elder.name}} 
+                                {{isMayor(elder.mayor).toTitleCase()}} {{elder.name}}
                                 <!--
                                 <div id="elderInfo">
                                     Power: 54 <span class="fa fa-hand-grab-o"> </span>
@@ -180,7 +180,7 @@
                                     <h4>{{isMayor(proposedEncounter.mayor).toTitleCase()}} {{proposedEncounter.name.toTitleCase()}}</h4>
                                 </div>
                                 <div class="center">
-                                    <span class="btn btn-primary">Start Encounter</span>
+                                    <span class="btn btn-primary">Start {{interaction_type}} Encounter</span>
                                 </div>
                             </div>                
                         </div>

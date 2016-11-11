@@ -342,11 +342,13 @@ app.directive('bsTooltip', function (){
             // TODO toggle encounter lock upon encounter creation
         });
     };
-
-    $scope.showElders = function () {
+    /**
+    *   @params interaction STRING - type of interaction with elders.
+    */
+    $scope.showElders = function (interaction) {
         $scope.loadingElders = true;
         $scope.toggleElders = true;
-        
+        $scope.interaction_type = interaction;
         
         console.log($scope.email, $scope.selectedRegion);
         api_service.loadElders($scope.email, $scope.selectedRegion)
@@ -657,6 +659,7 @@ app.directive('bsTooltip', function (){
         $scope.toggleTravelInfo = false;
         $scope.toggleElders = false;
         $scope.proposedEncounter = null;
+        $scope.interaction_type = null;
     };
 
     /**
