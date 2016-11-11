@@ -59,6 +59,18 @@
 	border-bottom: black thin solid;
 }
 
+#culture_container {
+	width: 85px;
+	height: 85px;
+	display: inline-block;
+	float: left;
+}
+
+#encounterInfo_container {
+	height: 85px;
+	width: 550px;
+}
+
 .mayor {
 	outline: gold solid thick;
 }

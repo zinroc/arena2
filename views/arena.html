@@ -139,7 +139,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <p class="btn btn-warning" ng-click="showElders()"> Trade </p>
+                            <p class="btn btn-warning" ng-click="showElders()"> Bribe </p>
                             <p class="btn btn-purple" ng-click="showElders()"> Diplomacy </p>
                             <p class="btn btn-black" ng-click="showElders()"> Infiltrate </p>
                             <p class="btn btn-danger" ng-click="showElders()"> Attack </p>
@@ -153,7 +153,7 @@
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
                                 </span>
-                                {{elder.name}} 
+                                {{isMayor(elder.mayor).toTitleCase()}} {{elder.name}} 
                                 <!--
                                 <div id="elderInfo">
                                     Power: 54 <span class="fa fa-hand-grab-o"> </span>
@@ -169,10 +169,21 @@
                             -->
                         </div>
                         <div ng-if="proposedEncounter" class="encounterConfirmation modal-body">
-                            <span class="fa-stack fa-3x">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa {{minor_faction_objects[proposedEncounter.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
-                            </span>                        </div>
+                            <div id="culture_container">
+                                <span class="fa-stack fa-3x">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa {{minor_faction_objects[proposedEncounter.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
+                                </span>     
+                            </div>
+                            <div id="encounterInfo_container">
+                                <div>
+                                    <h4>{{isMayor(proposedEncounter.mayor).toTitleCase()}} {{proposedEncounter.name.toTitleCase()}}</h4>
+                                </div>
+                                <div class="center">
+                                    <span class="btn btn-primary">Start Encounter</span>
+                                </div>
+                            </div>                
+                        </div>
                         <div class="modal-footer" ng-if="newEncounter">
 
                         </div>
