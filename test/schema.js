@@ -181,6 +181,7 @@ module.exports = function (knex) {
                         table.string("card_4");
                         table.string("card_5");
                         table.integer("elder_id").references("id").inTable("elders");
+                        table.string("region");
                         table.string("encounter_name");
                     });
                 }

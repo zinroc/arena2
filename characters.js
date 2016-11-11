@@ -77,8 +77,8 @@ module.exports = characters = {
         });
     }, 
     //called from client
-    encounter: function(email, id, elder, encounter_name, response){
-        characterStore.generateEncounter(email, id, elder, encounter_name)
+    encounter: function(email, id, elder, region, encounter_name, response){
+        characterStore.generateEncounter(email, id, elder, region, encounter_name)
         .then(function (result){
             response.json(result).end();
         });
