@@ -18,10 +18,15 @@ app.directive('bsTooltip', function (){
     };
 }).controller("EncounterCtrl", function encounterCtrl ($scope, api_service, $timeout, $sce) {
     "use strict";
+    /** URL PARAMS **/
     $scope.email = utils.getCookie("email");
     $scope.name = utils.getCookie("name");
     $scope.char_id = utils.getURLParams().char_id;
     $scope.encounter_id = utils.getURLParams().encounter_id;
+
+    /** Loading List **/
+    $scope.loadedItemsObj = {};
+    $scope.loadedItemsArr = ['game', 'cards'];
 
 
     console.log($scope.email, $scope.name);
@@ -36,8 +41,25 @@ app.directive('bsTooltip', function (){
     /** Mock values END ***/
 
     /** Loading START ***/
+    $scope.loadGameState = function () {
+        api_service.getGameState($scope.email)
+        .then(function (response) {
+            console.log("Got game state:");
+            console.log(response.data);
+            $scope.timestep = response.data.timestep;
+            $scope.loadedItemsObj['game'] = true;
 
-    $scope.load = function(){
+        });
+    };
+
+    $scope.loading = function (){
+        for (var i=0; i<$scope.loadedItemsArr.length; i++){
+            var index = $scope.loadedItemsArr[i];
+            $scope.loadedItemsObj[index] = false;
+        }
+    };
+
+    $scope.loadCards = function(){
         for(var i=0; i<$scope.playerCards.length; i++){
             $scope.playerCards[i].suit_symbol = $sce.trustAsHtml($scope.playerCards[i].suit_symbol);
         }
@@ -49,6 +71,8 @@ app.directive('bsTooltip', function (){
         for(var i=0; i<$scope.opponentCards.length; i++){
             $scope.opponentCards[i].suit_symbol = $sce.trustAsHtml($scope.opponentCards[i].suit_symbol);
         }
+
+        $scope.loadedItemsObj['cards'] = true;
     };
     /** Loading END ***/
 
@@ -132,6 +156,8 @@ app.directive('bsTooltip', function (){
 
 
     /** RUN ***/
-    $scope.load();
+    $scope.loading();
+    $scope.loadCards();
+    $scope.loadGameState();
 
 });
