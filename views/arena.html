@@ -26,7 +26,7 @@
             <div id="info-bar">
                 <div class="stat-container">
                     <!-- <img src="/icons/coin-2.png" data-placement="bottom" data-toggle="tooltip" data-title="Money"/>-->
-                    <span class="fa fa-circle yellow gold " bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Gold"></span>
+                    <span class="fa fa-circle yellow" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Gold"></span>
                     <span class="currency_value"> 100</span>
                     <span class="fa fa-star indigo" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="Renown"></span>
                     <span class="currency_value"> 10</span>
@@ -180,7 +180,18 @@
                                     <h4>{{isMayor(proposedEncounter.mayor).toTitleCase()}} {{proposedEncounter.name.toTitleCase()}}</h4>
                                 </div>
                                 <div class="center">
-                                    <span class="btn btn-primary">Start {{interaction_type}} Encounter</span>
+                                    <div ng-if="interaction_type==='bribe'">
+                                        <span class="btn btn-primary">(-100<span class="fa fa-circle yellow"> </span> + <span class="fa fa-star indigo"></span>)Buy Favor</span>
+                                    </div>
+                                    <div ng-if="interaction_type==='diplomacy'">
+                                        <span class="btn btn-primary">(+/- <span class="fa fa-star indigo"> </span>) Gain Favor </span>
+                                    </div>
+                                    <div ng-if="interaction_type==='infiltrate'">
+                                        <span class="btn btn-primary">(+/- <span class="fa fa-eye-slash black"> </span>) Stealth </span>
+                                    </div>
+                                    <div ng-if="interaction_type==='attack'">
+                                        <span class="btn btn-primary">(-10 <span class="fa fa-bolt red"> </span>) Attack </span>
+                                    </div>
                                 </div>
                             </div>                
                         </div>
