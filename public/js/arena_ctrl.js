@@ -90,8 +90,11 @@ app.directive('bsTooltip', function (){
     };
 
     $scope.enterEncounter = function (){
-        console.log("entering encounter...", $scope.email, $scope.selectedCharacter.id);
+        console.log("entering encounter...", $scope.email, $scope.selectedCharacter.id, $scope.selectedCharacter.encounter);
+        window.location.href = "/encounter?char_id=" + $scope.selectedCharacter.id + "&encounter_id=" + $scope.selectedCharacter.encounter;
+
     };
+
 
     /** ------------- Redirect End ------------- **/
 

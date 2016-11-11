@@ -20,8 +20,12 @@ app.directive('bsTooltip', function (){
     "use strict";
     $scope.email = utils.getCookie("email");
     $scope.name = utils.getCookie("name");
+    $scope.char_id = utils.getURLParams().char_id;
+    $scope.encounter_id = utils.getURLParams().encounter_id;
+
 
     console.log($scope.email, $scope.name);
+    console.log(utils.getURLParams());
 
     /** Mock values START**/
     $scope.playerCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: 'Q'}, {suit: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "Q"}];

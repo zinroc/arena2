@@ -33,7 +33,15 @@ app.get("/game", function (req, res) {
 app.get("/encounter", function (req, res){
     res.sendFile(__dirname + "/views/encounter.html")
 });
+
+
+
 /********************** Views *************************************/
+
+/********************** Encounter *************************************/
+
+/********************** Encounter *************************************/
+
 
 /********************** Players *************************************/
 app.post("/api/players/get", function (req, res) {
@@ -134,14 +142,15 @@ app.post("/api/characters/travel", function (req, res) {
         res.status(400).send("Email is required");
     }
 });
-
+/**
 app.post("/api/characters/encounter", function (req, res){
     if (req.body.email){
-        characters.encounter(req.body.email, req.body.id, req.body.elder, req.body.encounter_name, res);
+        characters.encounter(req.body.email, req.body.id, req.body.elder, req.body.encounter_namr res);
     } else {
         res.status(400).send("Email is required");
     }
 });
+**/
 
 
 
