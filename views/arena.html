@@ -148,7 +148,7 @@
                         <div id="eldersPanel" class="modal-body" ng-if="toggleElders">
                             <span ng-if="loadingElders" class="fa fa-spinner fa-spin fa-4x"></span>
                             <span ng-if="!loadingElders" class="elder_name_container"> <h4>Leaders </h4></span>
-                            <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)" class="{{isMayor(elder.mayor)}}">
+                            <div id="elders" ng-if="!loadingElders" ng-repeat="elder in elders" bs-tooltip data-toggle="tooltip" data-placement="bottom" data-original-title="{{minor_faction_objects[elder.minor_faction].name.toTitleCase()}} Minor Faction" ng-click="proposeEncounter(elder)" class="{{isMayor(elder.mayor)}} overflow">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa {{minor_faction_objects[elder.minor_faction].icon}} fa-stack-1x fa-inverse"></i>
@@ -181,16 +181,16 @@
                                 </div>
                                 <div class="center">
                                     <div ng-if="interaction_type==='bribe'">
-                                        <span class="btn btn-primary">(-100<span class="fa fa-circle yellow"> </span> + <span class="fa fa-star indigo"></span>)Buy Favor</span>
+                                        <span class="btn btn-primary" ng-click="generateEncounter(proposedEncounter.id, 'buy_favor')">(-100<span class="fa fa-circle yellow"> </span> + <span class="fa fa-star indigo"></span>)Buy Favor</span>
                                     </div>
                                     <div ng-if="interaction_type==='diplomacy'">
-                                        <span class="btn btn-primary">(+/- <span class="fa fa-star indigo"> </span>) Gain Favor </span>
+                                        <span class="btn btn-primary" ng-click="generateEncounter(proposedEncounter.id, 'gain_favor')">(+/- <span class="fa fa-star indigo"> </span>) Gain Favor </span>
                                     </div>
                                     <div ng-if="interaction_type==='infiltrate'">
-                                        <span class="btn btn-primary">(+/- <span class="fa fa-eye-slash black"> </span>) Stealth </span>
+                                        <span class="btn btn-primary" ng-click="generateEncounter(proposedEncounter.id, 'stealth')">(+/- <span class="fa fa-eye-slash black"> </span>) Stealth </span>
                                     </div>
                                     <div ng-if="interaction_type==='attack'">
-                                        <span class="btn btn-primary">(-10 <span class="fa fa-bolt red"> </span>) Attack </span>
+                                        <span class="btn btn-primary" ng-click="generateEncounter(proposedEncounter.id, 'attack')">(-10 <span class="fa fa-bolt red"> </span>) Attack </span>
                                     </div>
                                 </div>
                             </div>                
@@ -206,8 +206,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title center"> <div class="pointer" ng-click="enterEncounter()"><span class="fa fa-superpowers fa-spin fa-2x redglow"></span>   Enter Encounter </div></h3>
+                            <div class="spacer_20"></div>
+
+                            <h3 class="modal-title center"> 
+                                <div class="pointer btn-enterEncounter" ng-click="enterEncounter()"><span class="fa fa-superpowers fa-spin fa-2x redglow"></span>   Enter Encounter </div>
+                            </h3>
                         </div>
                         <div class="modal-body">
                             <span class="glyphicon glyphicon-ban-circle red"> </span> Cannot interact with locations while in an encounter

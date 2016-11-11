@@ -137,7 +137,7 @@ app.post("/api/characters/travel", function (req, res) {
 
 app.post("/api/characters/encounter", function (req, res){
     if (req.body.email){
-        characters.encounter(req.body.email, req.body.id, req.body.elder, res);
+        characters.encounter(req.body.email, req.body.id, req.body.elder, req.body.encounter_name, res);
     } else {
         res.status(400).send("Email is required");
     }

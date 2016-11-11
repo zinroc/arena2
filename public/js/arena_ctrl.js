@@ -329,8 +329,12 @@ app.directive('bsTooltip', function (){
         });
     }; 
 
-    $scope.generateEncounter = function (elder_id){
-        api_service.generateEncounter($scope.email, $scope.selectedCharacter.id, elder_id, $scope.selectedRegion)
+    /**
+    *   @params elder_id REFERENCES elders(id)
+    *   @aprams encounter_name STRING
+    */
+    $scope.generateEncounter = function (elder_id, encounter_name){
+        api_service.generateEncounter($scope.email, $scope.selectedCharacter.id, elder_id, $scope.selectedRegion, encounter_name)
         .then(function (response){
             console.log("encounter created");
             console.log(response.data);
@@ -340,6 +344,7 @@ app.directive('bsTooltip', function (){
                 $scope.loadEncounterInfo();
             }
             // TODO toggle encounter lock upon encounter creation
+            $scope.hideModals();
         });
     };
     /**

@@ -57,6 +57,11 @@
 	background: linear-gradient(-40deg, white, grey);
 	border-right: black thin solid;
 	border-bottom: black thin solid;
+	font-size: 0.9em;
+}
+
+.overflow {
+	overflow: scroll;
 }
 
 #culture_container {
@@ -73,6 +78,16 @@
 
 .mayor {
 	outline: gold solid thick;
+}
+
+.btn-enterEncounter {
+	background: orange;
+	display: inline-block;
+	width: 300px;
+}
+
+.btn-enterEncounter:hover {
+	background: salmon;
 }
 
 #elders:hover{
@@ -116,6 +131,11 @@
 	text-align: center;
 	border: thick black solid;
 	overflow: hidden;
+}
+
+.spacer_20 {
+	width: 20%;
+	float: left;
 }
 
 .characterPortrait-active {
