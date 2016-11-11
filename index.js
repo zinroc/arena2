@@ -111,6 +111,15 @@ app.get("/api/characters/elders", function (req, res) {
     }
 });
 
+app.get("/api/characters/character", function (req, res){
+    console.log(req.query.email);
+    if(req.query.email){
+        characters.getCharacterInfo(req.query.email, req.query.char_id, res);
+    } else {
+        res.status(400).send("Email is required");
+    }
+});
+
 app.post("/api/characters/createPlayerCharacter", function (req, res) {
     if (req.body.email) {
         characters.createPlayerCharacter(req.body.email, req.body.name, req.body.family_name, res);

@@ -49,6 +49,13 @@ module.exports = characters = {
         });
     },
     //called from client
+    getCharacterInfo: function(email, char_id, response){
+        characterStore.getCharacterInfo(email, char_id)
+        .then(function (rows){
+            response.json(rows).end();
+        });
+    },
+    //called from client
     createPlayerCharacter: function(email, name, family_name, response){
         characterStore.createPlayerCharacter(email, name, family_name)
         .then(function (rows){

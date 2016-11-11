@@ -64,7 +64,9 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/encounters", {email: email, encounter: encounter});
     };
 
-
+    this.getCharacterInfo = function (email, char_id) {
+        return this.getJSON("/api/characters/character", {email: email, char_id: char_id});
+    };
 
     return this;
 });

@@ -64,6 +64,13 @@ app.directive('bsTooltip', function (){
     /** Loading START ***/
     $scope.loadCharacterInfo = function () {
         console.log("loading character", $scope.char_id);
+        api_service.getCharacterInfo($scope.email, $scope.char_id)
+        .then(function (response){
+            console.log("Got character Info");
+            console.log(response.data);
+            $scope.character = response.data;
+            $scope.loadedItemsObj['character'] = true;
+        });
     };
 
     $scope.loadEncounterInfo = function () {
