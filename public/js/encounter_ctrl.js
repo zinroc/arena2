@@ -26,8 +26,12 @@ app.directive('bsTooltip', function (){
 
     /** Loading List **/
     $scope.loadedItemsObj = {};
-    $scope.loadedItemsArr = ['game', 'cards'];
+    $scope.loadedItemsArr = ['game', 'cards', 'player', 'character', 'encounter', 'opponent'];
 
+    /** Encounter Players **/
+    $scope.encounter = {};
+    $scope.character = {};
+    $scope.opponent = {};
 
     console.log($scope.email, $scope.name);
     console.log(utils.getURLParams());
@@ -40,7 +44,36 @@ app.directive('bsTooltip', function (){
     $scope.opponentCards = [{suit: 's' , suit_symbol: '<font color="black">&spades;</font>', value: 'K'}, {suit: 'd', suit_symbol: '<font color="red">&diams;</font>', value: "4"}];
     /** Mock values END ***/
 
+    /** Redirect START ***/
+    $scope.redirect = function () {
+        if (!$scope.email || !$scope.char_id ||
+         $scope.encounter_id !== $scope.character.encounter || 
+         $scope.email !== $scope.character.owner){
+            window.location.href = "/game";
+        }
+    };
+
+    $scope.logout = function (){
+        $scope.deleteCookies();
+
+        window.location.href= "https://accounts.google.com/logout";
+    };
+
+    /** Redirect END ***/    
+
     /** Loading START ***/
+    $scope.loadCharacterInfo = function () {
+        console.log("loading character", $scope.char_id);
+    };
+
+    $scope.loadEncounterInfo = function () {
+        console.log("loading encounter", $scope.encounter_id);
+    };
+
+    $scope.loadOpponentInfo = function () {
+        console.log("loading opponent");
+    };
+
     $scope.loadGameState = function () {
         api_service.getGameState($scope.email)
         .then(function (response) {
@@ -49,6 +82,17 @@ app.directive('bsTooltip', function (){
             $scope.timestep = response.data.timestep;
             $scope.loadedItemsObj['game'] = true;
 
+        });
+    };
+
+    $scope.loadPlayerInfo = function () {
+        api_service.getPlayer($scope.email, $scope.name)
+        .then(function (response) {
+            console.log("Got player state:", response.data.character_cap);
+            console.log(response.data);
+            $scope.admin = response.data.admin;
+            $scope.characterCap = response.data.character_cap;
+            $scope.loadedItemsObj['player'] = true;
         });
     };
 
@@ -159,5 +203,9 @@ app.directive('bsTooltip', function (){
     $scope.loading();
     $scope.loadCards();
     $scope.loadGameState();
+    $scope.loadPlayerInfo();
+    $scope.loadCharacterInfo();
+    $scope.loadEncounterInfo();
+    $scope.loadOpponentInfo();
 
 });
