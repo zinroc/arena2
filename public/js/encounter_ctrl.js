@@ -86,6 +86,13 @@ app.directive('bsTooltip', function (){
 
     $scope.loadOpponentInfo = function () {
         console.log("loading opponent");
+        api_service.loadElderInfo($scope.email, $scope.encounter_id)
+        .then(function (response){
+            console.log("Got opponent Info");
+            console.log(response.data);
+            $scope.opponent = response.data;
+            $scope.loadedItemsObj['opponent'] = true;
+        });
     };
 
     $scope.loadGameState = function () {

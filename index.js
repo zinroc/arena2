@@ -47,6 +47,14 @@ app.get("/api/characters/encounters", function (req, res){
     }
 });
 
+app.get("/api/characters/getElderInfo", function (req, res){
+    if (req.query.email){
+        characters.getElderInfo(req.query.email, req.query.encounter, res);
+    } else {
+        res.status(400).send("Email required");
+    }
+});
+
 /********************** Encounter *************************************/
 
 

@@ -28,8 +28,16 @@ module.exports = characters = {
             response.json(rows).end();
         });
     },
+    //called by client form /encounter
     encounters: function (email, encounter, response) {
         characterStore.getEncounterInfo(email, encounter)
+        .then(function (rows){
+            response.json(rows).end();
+        });
+    },
+    //called by client form /encounter
+    getElderInfo: function (email, encounter, response) {
+        characterStore.getElderInfo(email, encounter)
         .then(function (rows){
             response.json(rows).end();
         });

@@ -23,6 +23,9 @@ app.factory("api_service", function api_service ($http) {
         return this.getJSON("/api/characters/get", {email: email});
     };
 
+    this.loadElderInfo = function (email, encounter) {
+        return this.getJSON("/api/characters/getElderInfo", {email: email, encounter, encounter});
+    };
 
 
     this.getPlayerCharacters = function(email){
