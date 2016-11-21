@@ -48,7 +48,7 @@ module.exports = characters = {
             response.json(rows).end();
         });
     },
-    //called from client
+    //called from client for /encounter
     getCharacterInfo: function(email, char_id, response){
         characterStore.getCharacterInfo(email, char_id)
         .then(function (rows){

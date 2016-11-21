@@ -75,6 +75,13 @@ app.directive('bsTooltip', function (){
 
     $scope.loadEncounterInfo = function () {
         console.log("loading encounter", $scope.encounter_id);
+        api_service.loadEncounterInfo($scope.email, $scope.encounter_id)
+        .then(function (response) {
+            console.log("Got encounter Info");
+            console.log(response.data);
+            $scope.encounter = response.data;
+            $scope.loadedItemsObj['encounter'] = true;
+        });
     };
 
     $scope.loadOpponentInfo = function () {

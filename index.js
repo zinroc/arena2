@@ -39,6 +39,13 @@ app.get("/encounter", function (req, res){
 /********************** Views *************************************/
 
 /********************** Encounter *************************************/
+app.get("/api/characters/encounters", function (req, res){
+    if (req.query.email){
+        characters.encounters(req.query.email, req.query.encounter, res);
+    } else {
+        res.status(400).send("Email required");
+    }
+});
 
 /********************** Encounter *************************************/
 

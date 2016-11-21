@@ -24,6 +24,7 @@ app.factory("api_service", function api_service ($http) {
     };
 
 
+
     this.getPlayerCharacters = function(email){
         return this.getJSON("/api/characters/getPlayerCharacters", {email: email});
     };
