@@ -15,7 +15,7 @@ app.directive('bsTooltip', function (){
             });
         }
     };
-}).controller("EncounterCtrl", function encounterCtrl ($scope, api_service, $timeout, $sce) {
+}).controller("MatchCtrl", function matchCtrl ($scope, api_service, $timeout, $sce) {
     "use strict";
 
     $scope.hello_world = "hello world";

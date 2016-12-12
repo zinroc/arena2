@@ -1,0 +1,12 @@
+#dice-chart-container {
+	position: relative;
+	border: black thin solid;
+	margin-left: 75px;
+	height: 400px;
+	width: 200px;
+}
+
+.black_border {
+	border: black thin solid;
+	height: 400px;
+}
