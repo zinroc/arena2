@@ -20,6 +20,7 @@ function onSignIn (googleUser) {
     var profile = googleUser.getBasicProfile();
     var data = { name: profile.getName(), email: profile.getEmail() };
     // create a cookie
+    console.log(data.name, data.email, "<--- LOOK HERE");
     document.cookie="name=" + data.name;
     document.cookie="email=" + data.email;
     // redirect to main game

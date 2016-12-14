@@ -31,9 +31,12 @@ app.get("/game", function (req, res) {
 });
 
 app.get("/encounter", function (req, res){
-    res.sendFile(__dirname + "/views/encounter.html")
+    res.sendFile(__dirname + "/views/encounter.html");
 });
 
+app.get("/match", function (req, res) {
+    res.sendFile(__dirname + "/views/match.html");
+});
 
 
 /********************** Views *************************************/
