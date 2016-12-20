@@ -99,7 +99,7 @@ app.directive('bsTooltip', function (){
     /** ------------- Redirect End ------------- **/
 
     /** ------------- Loading START ------------- **/
-
+    
 
 
     /**
@@ -109,7 +109,7 @@ app.directive('bsTooltip', function (){
     $scope.loadPlayerInfo = function () {
         api_service.getPlayer($scope.email, $scope.name)
         .then(function (response) {
-            console.log("Got player state:", response.data.character_cap);
+            console.log("Got player state:");
             console.log(response.data);
             $scope.admin = response.data.admin;
             $scope.characterCap = response.data.character_cap;

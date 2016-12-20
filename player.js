@@ -21,7 +21,8 @@ module.exports = players = {
      */
     get: function (email, name, response) {
         playerStore.create(email, name)
-        .then(function (id) {
+        .then(function (id_array) {
+            var id = id_array[0];
             return playerStore.get(id);
         }).then (function (result){
             response.json(result).end();
